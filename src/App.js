@@ -198,7 +198,7 @@ class App extends Component {
                 : <div>EMAIL</div>
               }
             </span>
-            <a href="michal_czaplinski_cv_2017.pdf" className="App-link">
+            <a href="https://github.com/michalczaplinski/michalczaplinski.github.io/raw/master/michal_czaplinski_cv_2017.pdf" className="App-link">
               <div>RESUME</div>
             </a>
           </div>
