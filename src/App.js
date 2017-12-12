@@ -55,7 +55,6 @@ class App extends Component {
       <div className="App">
         <div className="App-header-container">
           <header
-            id="img"
             className="App-header"
             onMouseEnter={this.startAnimation}
             onMouseLeave={this.endAnimation}

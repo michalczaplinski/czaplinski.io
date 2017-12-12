@@ -1,5 +1,5 @@
 :root {
-  --header-height: 130px;
+  --header-height: 137px;
   --main-color: #404040;
   --base-name-font-size: 12vw;
   --base-links-font-size: 7vw;
@@ -98,42 +98,42 @@
   transform: translate(0px, 0px);
 }
 
-/*
-.App-email-right, .App-email-transition {
-  transform: translate(50px, 0px);
-}*/
-
-
 
 @media (max-width: 500px) {
-  .App-name { font-size: calc(var(--base-name-font-size)); }
-  .App-links { font-size: calc(var(--base-links-font-size)); }
+  .App-name {       font-size: calc(var(--base-name-font-size)); }
+  .App-links {      font-size: calc(var(--base-links-font-size)); }
   .App-link-email { font-size: calc(var(--base-links-font-size) * 0.8); }
 }
 
 @media (min-width: 500px) {
-  .App-name { font-size: calc(var(--base-name-font-size) - 1vw); }
-  .App-links { font-size: calc(var(--base-links-font-size) - 1vw); }
+  .App-name {       font-size: calc(var(--base-name-font-size) - 1vw); }
+  .App-links {      font-size: calc(var(--base-links-font-size) - 1vw); }
   .App-link-email { font-size: calc((var(--base-links-font-size) - 1vw) * 0.8); }
 }
 
 @media (min-width: 600px) {
-  .App-name { font-size: calc(var(--base-name-font-size) - 2vw); }
-  .App-links { font-size: calc(var(--base-links-font-size) - 2vw); }
+  .App-name {       font-size: calc(var(--base-name-font-size) - 2vw); }
+  .App-links {      font-size: calc(var(--base-links-font-size) - 2vw); }
   .App-link-email { font-size: calc((var(--base-links-font-size) - 2vw) * 0.8); }
 }
 
 @media (min-width: 700px) {
-  .App-name { font-size: calc(var(--base-name-font-size) - 3vw); }
-  .App-links { font-size: calc(var(--base-links-font-size) - 3vw); }
+  .App-name {       font-size: calc(var(--base-name-font-size) - 3vw); }
+  .App-links {      font-size: calc(var(--base-links-font-size) - 3vw); }
   .App-link-email { font-size: calc((var(--base-links-font-size) - 3vw) * 0.8); }
 }
 
 @media (min-width: 800px) {
-  .App-name { font-size: calc(var(--base-name-font-size) - 4vw); }
-  .App-links { font-size: calc(var(--base-links-font-size) - 4vw); }
+  .App-name {       font-size: calc(var(--base-name-font-size) - 4vw); }
+  .App-links {      font-size: calc(var(--base-links-font-size) - 4vw); }
   .App-link-email { font-size: calc((var(--base-links-font-size) - 4vw) * 0.8); }
 }
+
+@media (min-width: 900px) {
+  .App-name { font-size: 71px; }
+
+}
+
 
 
 
