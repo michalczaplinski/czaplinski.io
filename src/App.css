@@ -35,7 +35,7 @@
 .App-container {
   width: 100%;
   height: 70%;
-  padding: 10px;
+  padding-bottom: 18px;
   position: absolute;
   display: flex;
   flex-direction: column;
