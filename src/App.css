@@ -3,6 +3,9 @@
   --main-color: #404040;
   --base-name-font-size: 12vw;
   --base-links-font-size: 7vw;
+  --theme-left: #ff5151;
+  --theme-bottom: var(--main-color);
+  --theme-top: #8dfffb;
 }
 
 .App {
@@ -29,6 +32,7 @@
 
 .App-name {
   text-align: center;
+  color: var(--main-color);
   height: calc(30% - var(--header-height));
 }
 
@@ -171,7 +175,7 @@
 }
 
 .cube .front {
-  background: grey;
+  background: var(--theme-left);
 }
 
 .cube .back {
@@ -180,17 +184,17 @@
 }
 
 .cube .left {
-  background: #4d4d4d;
+  background: var(--theme-bottom);
   transform: rotateY(-90deg) translateX(-15px);
 }
 
 .cube .right {
-  background: #4d4d4d;
+  background: var(--theme-bottom);
   transform: rotateY(90deg) translateZ(15px);
 }
 
 .cube .top {
-  background: #b3b3b3;
+  background: var(--theme-top);
   transform: rotateX(90deg) translateY(-15px);
 }
 
@@ -210,7 +214,7 @@
   width: 0px;
   height: 0px;
   border-width: 7.5px;
-  border-color: grey transparent transparent grey;
+  border-color: var(--theme-left) transparent transparent var(--theme-left);
   border-style: solid;
   display: block;
 }

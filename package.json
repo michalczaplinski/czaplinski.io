@@ -1,7 +1,6 @@
 {
   "name": "michalczaplinski.github.io",
   "version": "0.1.0",
-  "homepage": "https://michalczaplinski.github.io/",
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
