@@ -3,7 +3,7 @@ import "./App.css";
 import classNames from "classnames";
 
 class App extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.startAnimation = this.startAnimation.bind(this);
@@ -179,36 +179,36 @@ class App extends Component {
                 <div className="App-email">mmczaplinski@gmail.com</div>
               </span>
             ) : (
-              <span
-                onClick={this.showEmail}
-                className={`App-link${this.state.showEmail ? "-email" : ""}`}
-              >
-                {this.state.showEmail ? (
-                  <div className="App-email">
-                    <div
-                      className={classNames({
-                        "App-email-left": true,
-                        "App-email-left-transition": this.state.transition
-                      })}
-                    >
-                      mmczaplinski
+                <span
+                  onClick={this.showEmail}
+                  className={`App-link${this.state.showEmail ? "-email" : ""}`}
+                >
+                  {this.state.showEmail ? (
+                    <div className="App-email">
+                      <div
+                        className={classNames({
+                          "App-email-left": true,
+                          "App-email-left-transition": this.state.transition
+                        })}
+                      >
+                        mmczaplinski
                     </div>
-                    <div
-                      className={classNames({
-                        "App-email-right": true,
-                        "App-email-right-transition": this.state.transition
-                      })}
-                    >
-                      @gmail.com
+                      <div
+                        className={classNames({
+                          "App-email-right": true,
+                          "App-email-right-transition": this.state.transition
+                        })}
+                      >
+                        @gmail.com
                     </div>
-                  </div>
-                ) : (
-                  <div>EMAIL</div>
-                )}
-              </span>
-            )}
+                    </div>
+                  ) : (
+                      <div>EMAIL</div>
+                    )}
+                </span>
+              )}
             <a
-              href="https://github.com/michalczaplinski/michalczaplinski.github.io/raw/master/michal_czaplinski_cv_2017.pdf"
+              href="https://github.com/michalczaplinski/michalczaplinski.github.io/raw/master/michal_czaplinski_cv_2019.pdf"
               className="App-link"
             >
               <div>RESUME</div>
