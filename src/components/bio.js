@@ -28,12 +28,12 @@ function Bio() {
             />
             <div>
               <div>
-                🌴 I'm a freelance web engineer who loves great UX{' '}
+                <span role="img" aria-label="palm">🌴</span> I'm a freelance web engineer who loves great UX{' '}
               </div>
               <div>
-                🇵🇪 Originally from Poland, currently living in Lima, Peru
+                <span role="img" aria-label="peru">🇵🇪</span> Originally from Poland, currently living in Lima, Peru
                 </div>
-              ☀️
+              <span role="img" aria-label="palm">☀️</span>
               <a href={`https://twitter.com/${social.twitter}`}>
                 {' '} Follow me on Twitter
               </a>
