@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import { rhythm, scale } from "../utils/typography"
 import Cube from "../components/cube"
 
-class Layout extends React.Component {
+class IndexLayout extends React.Component {
   render() {
     const { location, title, children } = this.props
     const rootPath = `${__PATH_PREFIX__}/blog`
@@ -79,13 +79,9 @@ class Layout extends React.Component {
           {header}
         </header>
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}
-          {` `} Michal Czaplinski
-        </footer>
       </div>
     )
   }
 }
 
-export default Layout
+export default IndexLayout

@@ -1,231 +1,129 @@
-import React, { Component } from "react";
-import { Link } from 'gatsby';
+import React, { useState } from "react"
+import { Link, graphql } from "gatsby"
+import { useTrail, animated } from "react-spring"
+import styled from "styled-components"
 
-import "./index.css";
-import classNames from "classnames";
+import "./index.css"
+import classNames from "classnames"
 import SEO from "../components/seo"
+import Layout from "../components/indexLayout"
 
+const PageWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff662;
+`
 
-class App extends Component {
-  constructor (props) {
-    super(props);
+const useEmail = () => {
+  const [showEmail, setShowEmail] = useState(false)
+  const [transition, setTransition] = useState(false)
+  const [mergeEmail, setMergeEmail] = useState(false)
 
-    this.startAnimation = this.startAnimation.bind(this);
-    this.endAnimation = this.endAnimation.bind(this);
-    this.showEmail = this.showEmail.bind(this);
-
-    this.state = {
-      rotating: false,
-      rotateOnce: true,
-      showEmail: false,
-      transition: false,
-      mergeEmail: false
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      rotateOnce: true
-    });
-
-    setTimeout(() => {
-      this.setState({
-        rotateOnce: false
-      });
-    }, 2100);
-  }
-
-  startAnimation() {
-    this.setState({ rotating: true });
-  }
-
-  endAnimation() {
-    this.setState({ rotating: false });
-  }
-
-  showEmail() {
-    this.setState({ showEmail: true });
-
-    setTimeout(() => this.setState({ transition: true }), 100);
-
-    setTimeout(() => this.setState({ mergeEmail: true }), 1500);
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <SEO
-          title="My page"
-          keywords={[`homepage`, `developer`, `javascript`, `react`]}
-        />
-        <div className="App-header-container">
-          <header
-            className="App-header"
-            onMouseEnter={this.startAnimation}
-            onMouseLeave={this.endAnimation}
-          >
-            <div
-              className={classNames({
-                "cube-container": true,
-                "cube-container-rotating": this.state.rotating,
-                "cube-container-rotate-once": this.state.rotateOnce
-              })}
-            >
-              <div className="cube loc-1">
-                {/* <!-- <div className="face front"></div> --> */}
-                <div className="face back" />
-                <div className="face left" />
-                <div className="face right" />
-                <div className="face top" />
-                <div className="face bottom" />
-              </div>
-              <div className="cube loc-2">
-                {/* <!-- <div className="face front"></div> --> */}
-                {/* <!-- <div className="face back"></div> --> */}
-                <div className="face left" />
-                <div className="face right" />
-                <div className="face top" />
-                <div className="face bottom" />
-              </div>
-              <div className="cube loc-3">
-                {/* <!-- <div className="face front"></div> --> */}
-                {/* <!-- <div className="face back"></div> --> */}
-                <div className="face left" />
-                <div className="face right" />
-                <div className="face top" />
-                <div className="face bottom" />
-              </div>
-              <div className="cube loc-4">
-                {/* <!-- <div className="face front"></div> --> */}
-                {/* <!--  <div className="face back"></div> --> */}
-                <div className="face left" />
-                <div className="face right" />
-                <div className="face top" />
-                <div className="face bottom" />
-              </div>
-              <div className="cube loc-5">
-                <div className="face front" />
-                {/* <!-- <div className="face back"></div> --> */}
-                <div className="face left" />
-                <div className="face right" />
-                {/* <!-- <div className="face top"></div> --> */}
-                <div className="face bottom" />
-              </div>
-              <div className="cube loc-6">
-                <div className="face front" />
-                <div className="face back" />
-                <div className="face left" />
-                <div className="face right" />
-                {/* <!-- <div className="face top"></div> --> */}
-                {/* <!-- <div className="face bottom"></div> --> */}
-              </div>
-              <div className="cube loc-7">
-                <div className="face front" />
-                <div className="face back" />
-                <div className="face left" />
-                <div className="face right" />
-                {/* <!-- <div className="face top"></div> --> */}
-                {/* <!-- <div className="face bottom"></div> --> */}
-              </div>
-              <div className="cube loc-8">
-                <div className="face front" />
-                <div className="face back" />
-                <div className="face left" />
-                <div className="face right" />
-                {/* <!-- <div className="face top"></div> --> */}
-                {/* <!-- <div className="face bottom"></div> --> */}
-              </div>
-              <div className="cube loc-9">
-                <div className="face front" />
-                <div className="face back" />
-                <div className="face left" />
-                {/* <!-- <div className="face right"></div> --> */}
-                <div className="face top" />
-                {/* <!-- <div className="face bottom"></div> --> */}
-              </div>
-              <div className="cube loc-10">
-                <div className="face front" />
-                <div className="face back" />
-                {/* <!-- <div className="face left"></div> --> */}
-                {/* <!-- <div className="face right"></div> --> */}
-                <div className="face top" />
-                <div className="face bottom" />
-              </div>
-              <div className="cube loc-11">
-                <div className="face front" />
-                <div className="face back" />
-                {/* <!-- <div className="face left"></div> --> */}
-                {/* <!-- <div className="face right"></div> --> */}
-                <div className="face top" />
-                <div className="face bottom" />
-              </div>
-              <div className="cube loc-12 clipped">
-                <div className="face front" />
-                <div className="face back" />
-                {/* <!-- <div className="face left"></div> --> */}
-                <div className="face right" />
-                <div className="face top" />
-                <div className="face bottom" />
-              </div>
-            </div>
-          </header>
-        </div>
-        <div className="App-name">Michal Czaplinski</div>
-        <div className="App-container">
-          <div className="App-links">
-            <Link to="/blog" className="App-link">
-              BLOG
-            </Link>
-            <a href="https://github.com/michalczaplinski" className="App-link">
-              <div>GITHUB</div>
-            </a>
-            <a href="https://twitter.com/C_Z_A_P_L_A" className="App-link">
-              <div>TWITTER</div>
-            </a>
-            {this.state.mergeEmail ? (
-              <span className="App-link-email">
-                <div className="App-email">mmczaplinski@gmail.com</div>
-              </span>
-            ) : (
-                <span
-                  onClick={this.showEmail}
-                  className={`App-link${this.state.showEmail ? "-email" : ""}`}
-                >
-                  {this.state.showEmail ? (
-                    <div className="App-email">
-                      <div
-                        className={classNames({
-                          "App-email-left": true,
-                          "App-email-left-transition": this.state.transition
-                        })}
-                      >
-                        mmczaplinski
-                    </div>
-                      <div
-                        className={classNames({
-                          "App-email-right": true,
-                          "App-email-right-transition": this.state.transition
-                        })}
-                      >
-                        @gmail.com
-                    </div>
-                    </div>
-                  ) : (
-                      <div>EMAIL</div>
-                    )}
-                </span>
-              )}
-            <a
-              href="/michal_czaplinski_cv_2019.pdf"
-              className="App-link"
-            >
-              <div>RESUME</div>
-            </a>
-          </div>
-        </div>
-      </div>
-    );
+  return {
+    mergeEmail,
+    showEmail,
+    transition,
+    update: () => {
+      setShowEmail(true)
+      setTimeout(() => setTransition(true), 100)
+      setTimeout(() => setMergeEmail(true), 1500)
+    },
   }
 }
 
-export default App;
+function IndexPage({ location, data }) {
+  const { mergeEmail, showEmail, transition, update } = useEmail()
+
+  const [toggle, setToggle] = useState(false)
+  setTimeout(() => setToggle(true), 200)
+  const config = { mass: 10, tension: 1000, friction: 300 }
+
+  const trail = useTrail(5, { config, opacity: toggle ? 1 : 0 })
+
+  const siteTitle = data.site.siteMetadata.title
+
+  const items = [
+    <Link to="/blog" className="App-link">
+      BLOG
+    </Link>,
+    <a href="https://github.com/michalczaplinski" className="App-link">
+      <div>GITHUB</div>
+    </a>,
+    <a href="https://twitter.com/C_Z_A_P_L_A" className="App-link">
+      <div>TWITTER</div>
+    </a>,
+    <div>
+      {mergeEmail ? (
+        <span className="App-link-email">
+          <div className="App-email">mmczaplinski@gmail.com</div>
+        </span>
+      ) : (
+        <span
+          onClick={() => update()}
+          className={`App-link${showEmail ? "-email" : ""}`}
+        >
+          {showEmail ? (
+            <div className="App-email">
+              <div
+                className={classNames({
+                  "App-email-left": true,
+                  "App-email-left-transition": transition,
+                })}
+              >
+                mmczaplinski
+              </div>
+              <div
+                className={classNames({
+                  "App-email-right": true,
+                  "App-email-right-transition": transition,
+                })}
+              >
+                @gmail.com
+              </div>
+            </div>
+          ) : (
+            <div>EMAIL</div>
+          )}
+        </span>
+      )}
+    </div>,
+    <a href="/michal_czaplinski_cv_2019.pdf" className="App-link">
+      <div>RESUME</div>
+    </a>,
+  ]
+
+  return (
+    <PageWrapper>
+      <Layout location={location} title={siteTitle}>
+        <SEO
+          title="All posts"
+          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
+        />
+        <div className="App-links">
+          {trail.map((props, index) => (
+            <animated.div style={props} key={index}>
+              {items[index]}
+            </animated.div>
+          ))}
+        </div>
+      </Layout>
+    </PageWrapper>
+  )
+}
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
+
+export default IndexPage

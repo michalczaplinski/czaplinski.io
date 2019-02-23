@@ -1,9 +1,11 @@
-html, body, #root {
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Catamaran', sans-serif;
+  font-family: "Catamaran", sans-serif;
 }
 
 * {
@@ -11,7 +13,7 @@ html, body, #root {
 }
 
 :root {
-  --header-height: 137px;
+  --header-height: 160px;
   --main-color: #404040;
   --base-name-font-size: 12vw;
   --base-links-font-size: 7vw;
@@ -20,54 +22,22 @@ html, body, #root {
   --theme-top: #8dfffb;
 }
 
-.App {
-  text-align: center;
-  color: var(--main-color);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  font-weight: 700;
-}
-
-.App-header-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  width: 100%;
-  height: var(--header-height);
-}
-
-.App-header {
-  display: flex;
-  width: 20%;
-  padding-top: 25px;
-  cursor: pointer;
-}
-
-.App-name {
-  text-align: center;
-  color: var(--main-color);
-  height: calc(30% - var(--header-height));
-}
-
-.App-container {
-  width: 100%;
-  height: 70%;
-  padding-bottom: 18px;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-}
-
 .App-links {
-  line-height: 7vh;
+  margin-top: 60px;
+  font-weight: 600;
+  line-height: 9vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   cursor: pointer;
+}
+
+@media screen and (min-width: 500px) {
+  .App-links {
+    align-items: flex-start;
+    margin-left: 11px;
+  }
 }
 
 .App-link {
@@ -96,13 +66,13 @@ html, body, #root {
 .App-email-left {
   display: flex;
   transition: transform 1s;
-  transform: translate(-300px)
+  transform: translate(-300px);
 }
 
 .App-email-right {
   display: flex;
   transition: transform 1s;
-  transform: translate(300px)
+  transform: translate(300px);
 }
 
 .App-email-left-transition {
@@ -113,44 +83,50 @@ html, body, #root {
   transform: translate(0px, 0px);
 }
 
-
 @media (max-width: 500px) {
-  .App-name {       font-size: calc(var(--base-name-font-size)); }
-  .App-links {      font-size: calc(var(--base-links-font-size)); }
-  .App-link-email { font-size: calc(var(--base-links-font-size) * 0.8); }
+  .App-links {
+    font-size: calc(var(--base-links-font-size));
+  }
+  .App-link-email {
+    font-size: calc(var(--base-links-font-size) * 0.8);
+  }
 }
 
 @media (min-width: 500px) {
-  .App-name {       font-size: calc(var(--base-name-font-size) - 1vw); }
-  .App-links {      font-size: calc(var(--base-links-font-size) - 1vw); }
-  .App-link-email { font-size: calc((var(--base-links-font-size) - 1vw) * 0.8); }
+  .App-links {
+    font-size: calc(var(--base-links-font-size) - 1vw);
+  }
+  .App-link-email {
+    font-size: calc((var(--base-links-font-size) - 1vw) * 0.8);
+  }
 }
 
 @media (min-width: 600px) {
-  .App-name {       font-size: calc(var(--base-name-font-size) - 2vw); }
-  .App-links {      font-size: calc(var(--base-links-font-size) - 2vw); }
-  .App-link-email { font-size: calc((var(--base-links-font-size) - 2vw) * 0.8); }
+  .App-links {
+    font-size: calc(var(--base-links-font-size) - 2vw);
+  }
+  .App-link-email {
+    font-size: calc((var(--base-links-font-size) - 2vw) * 0.8);
+  }
 }
 
 @media (min-width: 700px) {
-  .App-name {       font-size: calc(var(--base-name-font-size) - 3vw); }
-  .App-links {      font-size: calc(var(--base-links-font-size) - 3vw); }
-  .App-link-email { font-size: calc((var(--base-links-font-size) - 3vw) * 0.8); }
+  .App-links {
+    font-size: calc(var(--base-links-font-size) - 3vw);
+  }
+  .App-link-email {
+    font-size: calc((var(--base-links-font-size) - 3vw) * 0.8);
+  }
 }
 
 @media (min-width: 800px) {
-  .App-name {       font-size: calc(var(--base-name-font-size) - 4vw); }
-  .App-links {      font-size: calc(var(--base-links-font-size) - 4vw); }
-  .App-link-email { font-size: calc((var(--base-links-font-size) - 4vw) * 0.8); }
+  .App-links {
+    font-size: calc(var(--base-links-font-size) - 4vw);
+  }
+  .App-link-email {
+    font-size: calc((var(--base-links-font-size) - 4vw) * 0.8);
+  }
 }
-
-@media (min-width: 900px) {
-  .App-name { font-size: 71px; }
-
-}
-
-
-
 
 .cube-container {
   transform-style: preserve-3D;
@@ -162,7 +138,7 @@ html, body, #root {
   bottom: 0;
   left: 0;
   position: relative;
-	margin-bottom: 40px;
+  margin-bottom: 40px;
   z-index: 9999;
   transform: rotateX(-35.25deg) rotateY(-45deg);
 }
@@ -250,7 +226,8 @@ html, body, #root {
   display: block;
 }
 
-.cube.clipped .right, .cube.clipped .bottom {
+.cube.clipped .right,
+.cube.clipped .bottom {
   visibility: hidden;
 }
 

@@ -6,17 +6,17 @@ Wordpress2016.overrideThemeStyles = () => {
     "a.gatsby-resp-image-link": {
       boxShadow: `none`,
     },
-    "a": {
-      color: '#ff4f4b'
-    }
+    a: {
+      color: "#ff4f4b",
+    },
   }
 }
 
 delete Wordpress2016.googleFonts
 
-Wordpress2016.fontFamily = 'Catamaran';
-Wordpress2016.headerFontFamily = ['Catamaran', 'Georgia', 'serif'];
-Wordpress2016.bodyFontFamily = ['Catamaran', 'Georgia', 'serif'];
+Wordpress2016.fontFamily = "Catamaran"
+Wordpress2016.headerFontFamily = ["Catamaran", "Georgia", "serif"]
+Wordpress2016.bodyFontFamily = ["Catamaran", "Georgia", "serif"]
 Wordpress2016.color = `#ff4f4b`
 
 const typography = new Typography(Wordpress2016)
