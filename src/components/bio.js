@@ -23,19 +23,19 @@ function Bio() {
               style={{
                 marginRight: rhythm(1 / 2),
                 marginBottom: 0,
-                minWidth: 50,
-                borderRadius: `100%`,
-              }}
-              imgStyle={{
-                borderRadius: `50%`,
+                minWidth: 85,
               }}
             />
             <p>
-              Written by <strong>{author}</strong> who lives and works in San
-              Francisco building useful things.
-              {` `}
+              <div>
+                🌴 I'm a freelance web engineer who loves great UX{' '}
+              </div>
+              <div>
+                🇵🇪 Originally from Poland, currently living in Lima, Peru
+                </div>
+              ☀️
               <a href={`https://twitter.com/${social.twitter}`}>
-                You should follow him on Twitter
+                {' '} Follow me on Twitter
               </a>
             </p>
           </div>
@@ -47,9 +47,9 @@ function Bio() {
 
 const bioQuery = graphql`
   query BioQuery {
-    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+    avatar: file(absolutePath: { regex: "/michal.jpg/" }) {
       childImageSharp {
-        fixed(width: 50, height: 50) {
+        fixed(width: 85, height: 85) {
           ...GatsbyImageSharpFixed
         }
       }

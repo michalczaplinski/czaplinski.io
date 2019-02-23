@@ -1,13 +1,14 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "czaplinski.io",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "Michals website and blog",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Michal Czaplinski <mmczaplinski@gmail.com>",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/michalczaplinski/czaplinski.io/issues"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "gatsby": "^2.1.17",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-feed": "^2.0.13",
@@ -30,6 +31,8 @@
     "react-dom": "^16.8.3",
     "react-helmet": "^5.2.0",
     "react-typography": "^0.16.18",
+    "typeface-catamaran": "0.0.54",
+    "typeface-inter": "^3.2.0",
     "typeface-merriweather": "0.0.54",
     "typeface-montserrat": "0.0.54",
     "typography": "^0.16.18",
@@ -38,7 +41,7 @@
   "devDependencies": {
     "prettier": "^1.16.4"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://czaplinski.io",
   "keywords": [
     "gatsby"
   ],
@@ -46,7 +49,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/michalczaplinski/czaplinski.io.git"
   },
   "scripts": {
     "build": "gatsby build",
