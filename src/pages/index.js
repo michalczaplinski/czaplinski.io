@@ -9,13 +9,8 @@ import SEO from "../components/seo"
 import Layout from "../components/indexLayout"
 
 const PageWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100vw;
+  height: 100vh;
   background: #fff662;
 `
 
