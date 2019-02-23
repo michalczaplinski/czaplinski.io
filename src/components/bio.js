@@ -26,7 +26,7 @@ function Bio() {
                 minWidth: 85,
               }}
             />
-            <p>
+            <div>
               <div>
                 🌴 I'm a freelance web engineer who loves great UX{' '}
               </div>
@@ -37,7 +37,7 @@ function Bio() {
               <a href={`https://twitter.com/${social.twitter}`}>
                 {' '} Follow me on Twitter
               </a>
-            </p>
+            </div>
           </div>
         )
       }}
