@@ -40,10 +40,14 @@ function IndexPage({ location, data }) {
   const { mergeEmail, showEmail, transition, update } = useEmail()
 
   const [toggle, setToggle] = useState(false)
-  setTimeout(() => setToggle(true), 200)
-  const config = { mass: 10, tension: 1000, friction: 300 }
+  setTimeout(() => setToggle(true), 0)
+  const config = { mass: 30, tension: 1000, friction: 200 }
 
-  const trail = useTrail(5, { config, opacity: toggle ? 1 : 0 })
+  const trail = useTrail(5, {
+    config,
+    opacity: toggle ? 1 : 0,
+    y: toggle ? 0 : 500,
+  })
 
   const siteTitle = data.site.siteMetadata.title
 
@@ -105,8 +109,14 @@ function IndexPage({ location, data }) {
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         <div className="App-links">
-          {trail.map((props, index) => (
-            <animated.div style={props} key={index}>
+          {trail.map(({ y, ...props }, index) => (
+            <animated.div
+              style={{
+                ...props,
+                transform: y.interpolate(y => `translate3d(${y}px, 0, 0)`),
+              }}
+              key={index}
+            >
               {items[index]}
             </animated.div>
           ))}

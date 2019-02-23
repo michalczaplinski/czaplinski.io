@@ -30,7 +30,6 @@ body,
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  cursor: pointer;
 }
 
 @media screen and (min-width: 500px) {
