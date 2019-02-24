@@ -7,9 +7,12 @@ import { rhythm } from "../utils/typography"
 import BioText from "../components/bioText"
 
 const ProfileImage = styled.div`
+  display: flex;
+  margin-right: 28px;
   @media screen and (max-width: 450px) {
     justify-content: center;
     width: 100%;
+    margin: 0;
   }
 `
 
@@ -18,7 +21,7 @@ const BioWrapper = styled.div`
   flex-wrap: wrap;
 
   @media screen and (max-width: 450px) {
-    margin-top: 0px;
+    margin-top: 10px;
     margin-bottom: 30px;
   }
 
@@ -39,7 +42,6 @@ function Bio() {
                 fixed={data.avatar.childImageSharp.fixed}
                 alt={author}
                 style={{
-                  marginRight: 28,
                   marginBottom: rhythm(1),
                   minWidth: 85,
                   borderRadius: `50%`,

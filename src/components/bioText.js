@@ -2,7 +2,10 @@ import React from "react"
 import styled from "styled-components"
 
 const BioLine = styled.div`
-  margin-bottom: 6;
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5rem;
 `
 
 const BioWrapper = styled.div`

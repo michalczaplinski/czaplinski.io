@@ -11,7 +11,7 @@ import Layout from "../components/indexLayout"
 
 const PageWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: #fff662;
 `
 
@@ -57,7 +57,6 @@ const QuestionMarkShadow = styled.div`
   width: auto;
   height: auto;
   background: black;
-  /* margin-left: 3px; */
   z-index: 5;
   transform: translate3d(6px, 0, 0);
 
