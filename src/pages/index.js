@@ -27,7 +27,7 @@ const QuestionMarkWrapper = styled.div`
   }
 `
 
-const QuestionMark = styled(animated.div)`
+const QuestionMark = styled.div`
   position: relative;
   font-family: monospace;
   font-size: 25px;
@@ -38,7 +38,7 @@ const QuestionMark = styled(animated.div)`
   background: var(--theme-left);
   cursor: pointer;
 
-  transform: translate3d(6px, 6px, 0);
+  transform: translate3d(-12px, -12px, 0);
   transition: transform 600ms;
   z-index: 10;
 
@@ -58,9 +58,11 @@ const QuestionMarkShadow = styled.div`
   height: auto;
   background: black;
   z-index: 5;
-  transform: translate3d(6px, 0, 0);
+  transform: translate3d(6px, 0, 0) scale(1);
+  transition: transform 600ms;
 
-  @media screen and (max-width: 500px) {
+  &:hover {
+    transform: scale(1.05);
   }
 `
 
