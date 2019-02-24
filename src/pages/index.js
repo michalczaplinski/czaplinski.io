@@ -1,17 +1,68 @@
 import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
 import { useTrail, animated } from "react-spring"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 import "./index.css"
 import classNames from "classnames"
 import SEO from "../components/seo"
+import Bio from "../components/bio"
 import Layout from "../components/indexLayout"
 
 const PageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   background: #fff662;
+`
+
+const QuestionMarkWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+
+  @media screen and (min-width: 500px) {
+    margin-top: 35px;
+    justify-content: flex-start;
+    margin-left: 11px;
+  }
+`
+
+const QuestionMark = styled(animated.div)`
+  position: relative;
+  font-family: monospace;
+  font-size: 25px;
+  text-align: center;
+  padding-top: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: var(--theme-left);
+  cursor: pointer;
+
+  transform: translate3d(6px, 6px, 0);
+  transition: transform 600ms;
+  z-index: 10;
+
+  ${({ showWhoAmI }) =>
+    showWhoAmI &&
+    css`
+      transform: translate3d(-12px, -12px, 0);
+    `};
+
+  &:hover {
+    transform: translate3d(0, 0, 0);
+  }
+`
+
+const QuestionMarkShadow = styled.div`
+  width: auto;
+  height: auto;
+  background: black;
+  /* margin-left: 3px; */
+  z-index: 5;
+  transform: translate3d(6px, 0, 0);
+
+  @media screen and (max-width: 500px) {
+  }
 `
 
 const useEmail = () => {
@@ -31,17 +82,33 @@ const useEmail = () => {
   }
 }
 
+function randomVal() {
+  let x = Math.floor(100 + Math.random() * 150)
+  x = Math.random() > 0.5 ? x : -x
+  return x
+}
+
 function IndexPage({ location, data }) {
   const { mergeEmail, showEmail, transition, update } = useEmail()
 
   const [toggle, setToggle] = useState(false)
   setTimeout(() => setToggle(true), 0)
-  const config = { mass: 30, tension: 1000, friction: 200 }
 
-  const trail = useTrail(5, {
+  const [showBio, setShowBio] = useState(false)
+
+  const [showWhoAmI, setWhoAmI] = useState(false)
+  setTimeout(() => setWhoAmI(true), 1000)
+
+  const config = { mass: 2, tension: 200, friction: 30 }
+  const trail = useTrail(6, {
     config,
     opacity: toggle ? 1 : 0,
-    y: toggle ? 0 : 500,
+    xy0: toggle ? [0, 0] : [randomVal(), randomVal()],
+    xy1: toggle ? [0, 0] : [randomVal(), randomVal()],
+    xy2: toggle ? [0, 0] : [randomVal(), randomVal()],
+    xy3: toggle ? [0, 0] : [randomVal(), randomVal()],
+    xy4: toggle ? [0, 0] : [randomVal(), randomVal()],
+    xy5: toggle ? [0, 0] : [randomVal(), randomVal()],
   })
 
   const siteTitle = data.site.siteMetadata.title
@@ -94,7 +161,27 @@ function IndexPage({ location, data }) {
     <a href="/michal_czaplinski_cv_2019.pdf" className="App-link">
       <div>RESUME</div>
     </a>,
+    showBio ? (
+      <Bio />
+    ) : (
+      <QuestionMarkWrapper>
+        <QuestionMarkShadow>
+          <QuestionMark
+            showWhoAmI={showWhoAmI}
+            onClick={() => setShowBio(true)}
+          >
+            <div>Who am I ?</div>
+            <span role="img" aria-label="whoami">
+              {" "}
+              🤔{" "}
+            </span>
+          </QuestionMark>
+        </QuestionMarkShadow>
+      </QuestionMarkWrapper>
+    ),
   ]
+
+  const trans = (x, y) => `translate3d(${x}px,${y}px,0)`
 
   return (
     <PageWrapper>
@@ -104,17 +191,19 @@ function IndexPage({ location, data }) {
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
         <div className="App-links">
-          {trail.map(({ y, ...props }, index) => (
-            <animated.div
-              style={{
-                ...props,
-                transform: y.interpolate(y => `translate3d(${y}px, 0, 0)`),
-              }}
-              key={index}
-            >
-              {items[index]}
-            </animated.div>
-          ))}
+          {trail.map(({ ...props }, index) => {
+            return (
+              <animated.div
+                style={{
+                  ...props,
+                  transform: props[`xy${index}`].interpolate(trans),
+                }}
+                key={index}
+              >
+                {items[index]}
+              </animated.div>
+            )
+          })}
         </div>
       </Layout>
     </PageWrapper>

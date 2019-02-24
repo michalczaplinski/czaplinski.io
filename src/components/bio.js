@@ -4,6 +4,7 @@ import Image from "gatsby-image"
 import styled from "styled-components"
 
 import { rhythm } from "../utils/typography"
+import BioText from "../components/bioText"
 
 const ProfileImage = styled.div`
   @media screen and (max-width: 450px) {
@@ -38,36 +39,14 @@ function Bio() {
                 fixed={data.avatar.childImageSharp.fixed}
                 alt={author}
                 style={{
-                  marginRight: 20,
+                  marginRight: 28,
                   marginBottom: rhythm(1),
                   minWidth: 85,
                   borderRadius: `50%`,
                 }}
               />
             </ProfileImage>
-            <div style={{ paddingLeft: `1.5rem`, textIndent: `-1.6rem` }}>
-              <div style={{ marginBottom: 6 }}>
-                <span role="img" aria-label="palm">
-                  🌴
-                </span>{" "}
-                I'm a freelance web engineer who loves great UX.{" "}
-              </div>
-              <div style={{ marginBottom: 6 }}>
-                <span role="img" aria-label="peru">
-                  🇵🇪
-                </span>{" "}
-                Originally from Poland, currently living in Lima, Peru.
-              </div>
-              <div style={{ marginBottom: 6 }}>
-                <span role="img" aria-label="sun">
-                  ☀️
-                </span>
-                <a href={`https://twitter.com/${social.twitter}`}>
-                  {" "}
-                  Follow me on Twitter
-                </a>
-              </div>
-            </div>
+            <BioText twitterHandle={social.twitter} />
           </BioWrapper>
         )
       }}
