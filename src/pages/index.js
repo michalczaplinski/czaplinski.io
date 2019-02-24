@@ -49,7 +49,7 @@ const QuestionMark = styled(animated.div)`
     `};
 
   &:hover {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(-4px, -4px, 0);
   }
 `
 
