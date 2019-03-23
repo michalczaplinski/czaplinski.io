@@ -8,6 +8,13 @@ body,
   box-sizing: border-box;
 }
 
+/* This is overriding some custom styling in the theme */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 1.75em 0;
+  overflow: auto;
+}
+
 :root {
   --header-height: 160px;
   --main-color: #404040;

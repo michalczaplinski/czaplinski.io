@@ -32,7 +32,12 @@ class BlogIndex extends React.Component {
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.date}</small>
+              <small>
+                <i>{node.frontmatter.date}</i>
+                <span style={{ display: `inline-block`, marginLeft: 15 }}>
+                  {Math.round(node.timeToRead * 2)} minute read ⏱
+                </span>
+              </small>
               <p
                 dangerouslySetInnerHTML={{
                   __html: node.frontmatter.description || node.excerpt,
@@ -62,6 +67,7 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+          timeToRead
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title

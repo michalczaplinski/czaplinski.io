@@ -23,6 +23,14 @@ function BioText({ twitterHandle }) {
         I'm a freelance web engineer who loves great UX.
       </BioLine>
       <BioLine>
+        <span role="img" aria-label="work">
+          👨‍💻
+        </span>{" "}
+        <a href="mailto:mmczaplinski@gmail.com">
+          Available for freelance work!
+        </a>
+      </BioLine>
+      <BioLine>
         <span role="img" aria-label="peru">
           🇵🇪
         </span>{" "}

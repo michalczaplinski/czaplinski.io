@@ -9,6 +9,7 @@ import BioText from "../components/bioText"
 const ProfileImage = styled.div`
   display: flex;
   margin-right: 28px;
+  align-items: center;
   @media screen and (max-width: 450px) {
     justify-content: center;
     width: 100%;
