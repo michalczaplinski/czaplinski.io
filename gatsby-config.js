@@ -45,6 +45,7 @@ module.exports = {
               inlineCodeMarker: "÷",
             },
           },
+          `gatsby-remark-autolink-headers`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
@@ -80,7 +81,6 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-netlify`,
   ],
 }

@@ -3,6 +3,6 @@ import "typeface-catamaran"
 import "typeface-montserrat"
 import "typeface-merriweather"
 
-require("prismjs/themes/prism-tomorrow.css")
+require("./src/prismjs-theme.css")
 
 // Those were the default gatsby blog fonts

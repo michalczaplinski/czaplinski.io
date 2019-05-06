@@ -1,5 +1,7 @@
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
+import { Link } from "gatsby"
+
 import Image from "gatsby-image"
 import styled from "styled-components"
 
@@ -38,17 +40,19 @@ function Bio() {
         const { author, social } = data.site.siteMetadata
         return (
           <BioWrapper>
-            <ProfileImage>
-              <Image
-                fixed={data.avatar.childImageSharp.fixed}
-                alt={author}
-                style={{
-                  marginBottom: rhythm(1),
-                  minWidth: 85,
-                  borderRadius: `50%`,
-                }}
-              />
-            </ProfileImage>
+            <Link to="/" style={{ boxShadow: `none` }}>
+              <ProfileImage>
+                <Image
+                  fixed={data.avatar.childImageSharp.fixed}
+                  alt={author}
+                  style={{
+                    marginBottom: rhythm(1),
+                    minWidth: 85,
+                    borderRadius: `50%`,
+                  }}
+                />
+              </ProfileImage>
+            </Link>
             <BioText twitterHandle={social.twitter} />
           </BioWrapper>
         )
