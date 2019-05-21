@@ -56,8 +56,7 @@ typings/
 
 # gatsby files
 .cache/
-public/static
-public/render-page.js.map
+public
 
 # Mac files
 .DS_Store

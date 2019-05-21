@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import { useTrail, animated } from "react-spring"
 import styled, { css } from "styled-components"
 
-import "./index.css"
+import "../index.css"
 import classNames from "classnames"
 import SEO from "../components/seo"
 import Bio from "../components/bio"
