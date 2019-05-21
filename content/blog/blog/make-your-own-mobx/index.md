@@ -141,11 +141,45 @@ OK, so now that we understand how proxies work, how do we go about implementing 
 
 You can imagine that the green, blue and red boxes correspond to the render methods of respective react components. The **store** is just a plain object wrapped with a `store` function. Whenever some value in this store gets updated in that store we want to rerender each component that uses that piece of state. How do we do that?
 
-The answer is on the right hand side! We want our library to build up a mapping between every property available in the store and a list of components that should re-render when that property changes. We'll store that mapping in a variable called `reactionsMap`. So, in our diagram, whenever `store.text` is updated, `Component1` and `Component3` should re-render, but *not* `Component3` (because we don't want to waste doing this). 
+The answer is on the right hand side! We want our library to build up a mapping between every property available in the store and a list of components that should re-render when that property changes. We'll store that mapping in a variable called `reactionsMap`. So, in our diagram, whenever `store.text` is updated, `Component1` and `Component3` should re-render, but *not* `Component3`. 
 
+Armed with this knowledge, we're ready to sketch out the implementation of the library:
 
 ```javascript
+// highlight-range{3-6}
+const reactionsMap = {};
 
+// It will point to a component instance that is being rendered. 
+// We are going to use later on 🙂
+let currentlyRenderingComponent;
+
+
+// The handler currently does nothing so far...
+const handler = {
+  get: function(target, key) {
+    return target[key];   
+  },
+  set: function(target, key, value) {
+    target[key] = value;
+    return true;
+  }
+};
+
+// For now, this just does nothing
+export function store(object) {
+  return new Proxy(object, handler);
+}
+
+// And this also does not do anything yet...
+export function view(MyComponent) {
+  return MyComponent;
+}
+```
+
+Let's first augument the `view` function with additional functionality...
+
+```javascript
+// highlight-range{19-28}
 const reactionsMap = {};
 let currentlyRenderingComponent;
 
@@ -162,8 +196,115 @@ const handler = {
 export function store(object) {
   return new Proxy(object, handler);
 }
-
+  
 export function view(MyComponent) {
-  return MyComponent;
+  return class Observer extends MyComponent {
+    ID = `${Math.floor(Math.random() * 10e9)}`;
+
+    render() {
+      currentlyRenderingComponent = this;
+      const renderValue = super.render();
+      currentlyRenderingComponent = undefined;
+      return renderValue;
+    }
+  };
+}
+
+```
+
+We are using class inheritance to extend the functionality of `MyComponent`. Naturally, our `view` function is only going to work if we pass it a class component as an argument. If were writing a "serious" library, we could add code that checks whether `MyComponent` is a function and, if so, automatically wrap it in a class ([which is what MobX actually does under the hood](https://github.com/mobxjs/mobx-react/blob/master/src/observer.js#L339:L341)) but we're not gonna do that now, for no reason other than just trying to keep things simple.
+
+The `ID` that we assign to our component will be needed later on. For now, just know it that we need it so that we can track the identity of our components.
+
+The interesting stuff is happening inside of the `render` function. Try to picture what steps are taken when we render a component that has been wrapped with our `view` function. The reason we are setting and un-setting `currentlyRenderingComponent` is so that we can keep track of which component is being rendered and when. Why do we need to do that? It will become clear from looking at the updated implementation of the `store` function 
+
+Our new implementation has a new interesting side-effect: It checks what component is **currently rendering** whenever we access some property on our store. With this clever trick we can build up our `reactionsMap` by simply checking the value of `currentlyRenderingComponent` for each store property that is being accessed.
+
+```js
+const handler = {
+  get: function(target, key) {
+    // If there is no component currently rendering it means that 
+    // we have accessed the store from outside of a react component. 
+    // We can just return the value for the given key
+    if (typeof currentlyRenderingComponent === "undefined") {
+      return target[key];
+    }
+    // In case we don't track the `key` yet, start tracking it
+    // and set its value to currently rendering component 
+    if (!reactionsMap[key]) {
+      reactionsMap[key] = [currentlyRenderingComponent];
+    }
+    // We already track the `key`, so let's check 
+    // if we track the currentlyRendering component for that key.
+    const hasComponent = reactionsMap[key].find(
+      comp => comp.ID === currentlyRenderingComponent.ID
+    );
+    if (!hasComponent) {
+      reactionsMap[key].push(currentlyRenderingComponent);
+    }
+    return target[key];
+  },
+  
+  // rest of the code from above...
+};
+
+export function store(object) {
+  return new Proxy(object, handler);
 }
 ```
+
+Great, now we have build up our map of reactions ( which will happen on the first render). But we still need a way to tell react to update the components whenever we `set` a new property on our store. Remember, we want to only update the component that **use** that updated property. Well, we just use the data from our `reactionsMap`:
+
+
+```javascript
+// highlight-range{21-25}
+const reactionsMap = {};
+let currentlyRenderingComponent;
+
+const handler = {
+  get: function(target, key) {
+    if (typeof currentlyRenderingComponent === "undefined") {
+      return target[key];
+    }
+    if (!reactionsMap[key]) {
+      reactionsMap[key] = [currentlyRenderingComponent];
+    }
+    const hasComponent = reactionsMap[key].find(
+      comp => comp.ID === currentlyRenderingComponent.ID
+    );
+    if (!hasComponent) {
+      reactionsMap[key].push(currentlyRenderingComponent);
+    }
+    return target[key];
+  },
+
+  set: function(target, key, value) {
+    reactionsMap[key].forEach(component => component.forceUpdate());
+    target[key] = value;
+    return true;
+  }
+};
+
+export function store(object) {
+  return new Proxy(object, handler);
+}
+
+export function view(MyComponent) {
+  return class Observer extends MyComponent {
+    ID = `${Math.floor(Math.random() * 10e9)}`;
+
+    render() {
+      currentlyRenderingComponent = this;
+      const renderValue = super.render();
+      currentlyRenderingComponent = undefined;
+      return renderValue;
+    }
+  };
+}
+```
+
+And with this we've actually completed our implementation! 🎉
+
+You can check our a live version on [Codesandbox](https://codesandbox.io/s/v191wkn77) and play around with it. 
+
+Last but not least I have to acknowledge both [MobX](https://github.com/mobxjs/mobx/) and [react-easy-state](https://github.com/mobxjs/mobx/) which are awesome state management libraries and main inspirations for this post.
