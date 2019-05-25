@@ -60,8 +60,14 @@ pre[class*="language-"] {
   box-shadow: none;
 }
 
-.App-link:hover {
-  text-decoration: underline;
+div > .App-link:hover {
+  cursor: pointer;
+}
+
+div > .App-link:hover::before {
+  content: "👉";
+  position: absolute;
+  transform: translateX(-40px);
 }
 
 .App-link-email {

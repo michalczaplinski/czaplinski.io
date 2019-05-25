@@ -124,7 +124,7 @@ function IndexPage({ location, data }) {
     <a href="https://twitter.com/C_Z_A_P_L_A" className="App-link">
       <div>TWITTER</div>
     </a>,
-    <div>
+    <div className="App-link">
       {mergeEmail ? (
         <span className="App-link-email">
           <div className="App-email">mmczaplinski@gmail.com</div>
