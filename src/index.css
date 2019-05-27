@@ -67,7 +67,7 @@ div > .App-link:hover {
 div > .App-link:hover::before {
   content: "👉";
   position: absolute;
-  transform: translateX(-40px);
+  transform: translateX(-48px);
 }
 
 .App-link-email {
