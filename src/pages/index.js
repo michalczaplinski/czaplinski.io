@@ -55,13 +55,14 @@ const QuestionMark = styled.div`
 const QuestionMarkShadow = styled.div`
   width: auto;
   height: auto;
-  background: black;
+  background: rgba(49, 49, 49, 0.37);
   z-index: 5;
   transform: translate3d(6px, 0, 0) scale(1);
-  transition: transform 600ms;
+  transition: all 600ms;
 
   &:hover {
     transform: scale(1.05);
+    background: rgba(49, 49, 49, 0.85);
   }
 `
 
