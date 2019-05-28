@@ -177,7 +177,6 @@ function IndexPage({ location, data }) {
   return (
     <animated.div
       style={{
-        width: `100vw`,
         minHeight: `100vh`,
         background: degs.interpolate(
           degs =>
