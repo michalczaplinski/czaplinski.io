@@ -97,7 +97,10 @@ function IndexPage({ location, data }) {
     degs: 20,
     config: { mass: 100, tension: 200, friction: 200 },
   }))
-  set({ degs: (docY * (165 - 20)) / window.innerHeight + 20 })
+
+  if (typeof window !== `undefined`) {
+    set({ degs: (docY * (165 - 20)) / window.innerHeight + 20 })
+  }
 
   const siteTitle = data.site.siteMetadata.title
 
