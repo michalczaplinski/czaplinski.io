@@ -32,14 +32,14 @@ const BioWrapper = styled.div`
   margin-bottom: 35px;
 `
 
-function Bio() {
+function Bio({ style }) {
   return (
     <StaticQuery
       query={bioQuery}
       render={data => {
         const { author, social } = data.site.siteMetadata
         return (
-          <BioWrapper>
+          <BioWrapper style={style}>
             <Link to="/" style={{ boxShadow: `none` }}>
               <ProfileImage>
                 <Image

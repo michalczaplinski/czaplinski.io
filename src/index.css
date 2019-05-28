@@ -37,7 +37,7 @@ pre[class*="language-"] {
 }
 
 .App-links {
-  margin-top: 10px;
+  margin-top: 16px;
   font-weight: 600;
   line-height: 9vh;
   display: flex;
@@ -58,6 +58,7 @@ pre[class*="language-"] {
   text-decoration: none;
   color: inherit;
   box-shadow: none;
+  letter-spacing: 2.5px;
 }
 
 div > .App-link:hover {

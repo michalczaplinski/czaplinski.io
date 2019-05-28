@@ -2,6 +2,7 @@
 import "typeface-catamaran"
 import "typeface-montserrat"
 import "typeface-merriweather"
+import "typeface-source-code-pro"
 
 require("./src/prismjs-theme.css")
 

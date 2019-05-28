@@ -26,8 +26,10 @@ const QuestionMarkWrapper = styled.div`
 
 const QuestionMark = styled.div`
   position: relative;
-  font-family: monospace;
-  font-size: 25px;
+  font-family: "Source Code Pro", Consolas, Monaco, "Andale Mono", "Ubuntu Mono",
+    monospace;
+  font-weight: 300;
+  font-size: 22px;
   text-align: center;
   padding-top: 7px;
   padding-left: 15px;
@@ -153,7 +155,7 @@ function IndexPage({ location, data }) {
       <div>RESUME</div>
     </a>,
     showBio ? (
-      <Bio />
+      <Bio style={{ marginTop: 40 }} />
     ) : (
       <QuestionMarkWrapper>
         <QuestionMarkShadow>
@@ -161,7 +163,7 @@ function IndexPage({ location, data }) {
             showWhoAmI={showWhoAmI}
             onClick={() => setShowBio(true)}
           >
-            <div>Who am I ?</div>
+            <div>who am i?</div>
             <span role="img" aria-label="whoami">
               {" "}
               🤔{" "}

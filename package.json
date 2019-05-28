@@ -42,6 +42,7 @@
     "typeface-inter": "^3.2.0",
     "typeface-merriweather": "0.0.54",
     "typeface-montserrat": "0.0.54",
+    "typeface-source-code-pro": "^0.0.71",
     "typography": "^0.16.18",
     "typography-theme-wordpress-2016": "^0.16.18"
   },

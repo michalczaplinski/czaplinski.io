@@ -12,7 +12,7 @@ If you prefer a video version, check out my [meetup talk](https://youtu.be/S2x4W
 
 Have you been using MobX or a similar state-management library and wondering how it just "knows" how and when to update your components when some of your data changes? Look at the following code example straight from the MobX [docs](https://mobx.js.org/refguide/observer-component.html):
 
-```js
+```jsx
 import {observer} from "mobx-react";
 
 var timerData = observable({
@@ -74,7 +74,7 @@ Proxies were added to javascript with the ES2015 standard but unlike [classes](h
 
 Proxies allow you to customize the behaviour of an object. You might the familiar with the [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) and [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) that allow you to define custom functions that are called when an object's property is looked up (getters) or set (setters). Proxies are like getters and setters on steroids. They allow you to modify every aspect of an object's behaviour not only setting and getting of properties. Let's see what this means with a simple code example:
 
-```javascript
+```jsx
 const target = {
   number: 42,
 };
@@ -114,7 +114,7 @@ proxy.number;  //=>  This now returns 43 !
 
 Our original object is unmodified, but now when we use our `proxy` object it "proxies" every property access through the `get` trap. We can now do the same for the `set` operation:
 
-```javascript
+```js
 // highlight-range{5-8}
 const handler = {
   get: (obj, prop) => {
