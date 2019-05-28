@@ -1,19 +1,16 @@
 import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
-import { useTrail, animated } from "react-spring"
+import { useTrail, animated, useSpring } from "react-spring"
 import styled, { css } from "styled-components"
+import classNames from "classnames"
 
 import "../index.css"
-import classNames from "classnames"
+
+import useEmail from "../hooks/useEmail"
+import useMouse from "../hooks/useMouse"
 import SEO from "../components/seo"
 import Bio from "../components/bio"
 import Layout from "../components/indexLayout"
-
-const PageWrapper = styled.div`
-  width: 100vw;
-  min-height: 100vh;
-  background: #fff662;
-`
 
 const QuestionMarkWrapper = styled.div`
   display: flex;
@@ -66,23 +63,6 @@ const QuestionMarkShadow = styled.div`
   }
 `
 
-const useEmail = () => {
-  const [showEmail, setShowEmail] = useState(false)
-  const [transition, setTransition] = useState(false)
-  const [mergeEmail, setMergeEmail] = useState(false)
-
-  return {
-    mergeEmail,
-    showEmail,
-    transition,
-    update: () => {
-      setShowEmail(true)
-      setTimeout(() => setTransition(true), 100)
-      setTimeout(() => setMergeEmail(true), 1500)
-    },
-  }
-}
-
 function randomVal() {
   let x = Math.floor(100 + Math.random() * 150)
   x = Math.random() > 0.5 ? x : -x
@@ -102,7 +82,7 @@ function IndexPage({ location, data }) {
 
   const config = { mass: 2, tension: 200, friction: 30 }
   const trail = useTrail(6, {
-    config,
+    config: config.wobbly,
     opacity: toggle ? 1 : 0,
     xy0: toggle ? [0, 0] : [randomVal(), randomVal()],
     xy1: toggle ? [0, 0] : [randomVal(), randomVal()],
@@ -111,6 +91,13 @@ function IndexPage({ location, data }) {
     xy4: toggle ? [0, 0] : [randomVal(), randomVal()],
     xy5: toggle ? [0, 0] : [randomVal(), randomVal()],
   })
+
+  const { y: docY } = useMouse()
+  const [{ degs }, set] = useSpring(() => ({
+    degs: 20,
+    config: { mass: 100, tension: 200, friction: 200 },
+  }))
+  set({ degs: (docY * (165 - 20)) / window.innerHeight + 20 })
 
   const siteTitle = data.site.siteMetadata.title
 
@@ -185,7 +172,16 @@ function IndexPage({ location, data }) {
   const trans = (x, y) => `translate3d(${x}px,${y}px,0)`
 
   return (
-    <PageWrapper>
+    <animated.div
+      style={{
+        width: `100vw`,
+        minHeight: `100vh`,
+        background: degs.interpolate(
+          degs =>
+            `linear-gradient(${degs}deg, #8dfffb 7%,  #fffaae 20%, #fff662 70%, #ff5151 110%)`
+        ),
+      }}
+    >
       <Layout location={location} title={siteTitle}>
         <SEO
           title="All posts"
@@ -207,7 +203,7 @@ function IndexPage({ location, data }) {
           })}
         </div>
       </Layout>
-    </PageWrapper>
+    </animated.div>
   )
 }
 
