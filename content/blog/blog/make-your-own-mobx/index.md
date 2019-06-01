@@ -1,7 +1,7 @@
 ---
-title: Make your own MobX-like state management library in 40 LOC
+title: Build your own MobX-like state management library in 40 LOC
 date: "2019-02-22"
-description: Make your own MobX-like state management library in 40 LOC
+description: Build your own MobX-like state management library in 40 LOC
 ---
 
 ⚠️ **NOTE: This post assumes good familiarity with react**. You don't need to be an expert, if you've used it to make UIs before, you're gonna be fine, I promise 🙂.
