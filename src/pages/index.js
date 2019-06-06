@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
 import { useTrail, animated, useSpring } from "react-spring"
-import styled, { css } from "styled-components"
+import styled, { css, keyframes } from "styled-components"
 import classNames from "classnames"
 
 import "../index.css"
@@ -11,6 +11,22 @@ import useMouse from "../hooks/useMouse"
 import SEO from "../components/seo"
 import Bio from "../components/bio"
 import Layout from "../components/indexLayout"
+
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.96)
+  }
+
+  100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+`
+
+const FadeIn = styled.div`
+  animation: ${fadeIn} 400ms ease-in;
+`
 
 const QuestionMarkWrapper = styled.div`
   display: flex;
@@ -156,7 +172,9 @@ function IndexPage({ location, data }) {
       <div>RESUME</div>
     </a>,
     showBio ? (
-      <Bio style={{ marginTop: 40 }} />
+      <FadeIn>
+        <Bio style={{ marginTop: 40 }} />
+      </FadeIn>
     ) : (
       <QuestionMarkWrapper>
         <QuestionMarkShadow>
