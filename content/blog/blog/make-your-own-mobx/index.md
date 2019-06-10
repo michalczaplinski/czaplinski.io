@@ -46,7 +46,7 @@ ReactDOM.render(<Timer timerData={timerData} />, document.body);
 
 ### Our API
 
-The first question that a library author should ask themselves is: "What do I want my API to look like?". Ideally, we would like to keep the number of concepts that a user needs to learn to an absolute minimum. With that in mind, to keep things as simple as possible and inspired by [react-easy-state](https://github.com/solkimicreb/react-easy-state/) I want to our library to only consist of 2 functions: `store` and `view`:
+The first question that a library author should ask themselves is: "What do I want my API to look like?". Ideally, we would like to keep the number of concepts that a user needs to learn to an absolute minimum. With that in mind, to keep things as simple as possible, and inspired by [react-easy-state](https://github.com/solkimicreb/react-easy-state/) I want our library to only consist of 2 functions: `store` and `view`:
 
 - The `store` function wraps an object which contains our state.
 - The `view` function wraps a react component and makes it *reactive* to changes in the state.
@@ -258,7 +258,7 @@ export function store(object) {
 
 Our new implementation has a new interesting side-effect: It checks what component is **currently rendering** whenever we access some property on our store. With this clever trick we can build up our `reactionsMap` by simply checking the value of `currentlyRenderingComponent` for each store property that is being accessed.
 
-Great, now we have build up our map of reactions ( which will happen on the first render). But we still need a way to tell react to update the components whenever we `set` a new property on our store. Remember, we want to only update the component that **use** that updated property. Well, we just use the data from our `reactionsMap`:
+Great, now we have built up our map of reactions ( which will happen on the first render). But we still need a way to tell react to update the components whenever we `set` a new property on our store. Remember, we want to only update the component that **uses** that updated property. Well, we just use the data from our `reactionsMap`:
 
 
 ```javascript
@@ -310,6 +310,8 @@ export function view(MyComponent) {
 
 And with this we've actually completed our implementation! 🎉
 
-You can check our a live version on [Codesandbox](https://codesandbox.io/s/v191wkn77) and play around with it. 
+You can check out a live version on [Codesandbox](https://codesandbox.io/s/v191wkn77) and play around with it.
 
-Last but not least, I wanna give a shout out to both [MobX](https://github.com/mobxjs/mobx/) and [react-easy-state](https://github.com/mobxjs/mobx/) which are awesome state management libraries and main inspirations for this post.
+If you enjoyed this, you can follow me on [twitter](https://twitter.com/c_z_a_p_l_a) for more JS-related things. If you hated it, you can follow me on [twitter](https://twitter.com/c_z_a_p_l_a) and tell me why it sucked 😛. Seriously, I'm always super happy to hear your thoughts and there is no comment too small or too silly! And if you find any mistakes, let me know! The source for this post is right here: https://github.com/michalczaplinski/michalczaplinski.github.io
+
+Last but not least, I wanna give a shout out to both [MobX](https://github.com/mobxjs/mobx/) and [react-easy-state](https://github.com/solkimicreb/react-easy-state) which are awesome state management libraries and main inspirations for this post.

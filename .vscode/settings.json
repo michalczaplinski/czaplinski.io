@@ -18,8 +18,8 @@
     "breadcrumb.activeSelectionForeground": "#fff662",
     "menu.selectionForeground": "#fff662",
     "menubar.selectionForeground": "#fff662",
-    "statusBar.background": "#bc92f7",
-    "statusBarItem.hoverBackground": "#9f62f4",
+    "statusBar.background": "#fff662",
+    "statusBarItem.hoverBackground": "#fff662",
     "statusBar.foreground": "#15202b"
   }
 }
