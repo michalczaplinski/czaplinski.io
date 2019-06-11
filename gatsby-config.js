@@ -81,6 +81,11 @@ module.exports = {
       },
     },
     `gatsby-plugin-netlify`,
-    `gatsby-plugin-remove-serviceworker`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-141934797-1",
+      }
+    }
   ],
 }
