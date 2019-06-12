@@ -141,7 +141,7 @@ OK, so now that we understand how proxies work, how do we go about implementing 
 
 You can imagine that the green, blue and red boxes correspond to the render methods of respective react components. The **store** is just a plain object wrapped with a `store` function. Whenever some value in this store gets updated, we want to **re-render** each component that uses that piece of state. How do we do that?
 
-The answer is on the right hand side! We want our library to build up a mapping between every property available in the store and a list of components that should re-render when that property changes. We'll store that mapping in a variable called `reactionsMap`. So, in our diagram, whenever `store.text` is updated, `Component1` and `Component3` should re-render, but *not* `Component3`. 
+The answer is on the right hand side! We want our library to build up a mapping between every property available in the store and a list of components that should re-render when that property changes. We'll store that mapping in a variable called `reactionsMap`. So, in our diagram, whenever `store.text` is updated, `Component1` and `Component3` should re-render, but *not* `Component2`. 
 
 Armed with this knowledge, we're ready to sketch out the implementation of the library:
 
