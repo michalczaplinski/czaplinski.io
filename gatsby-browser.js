@@ -5,5 +5,4 @@ import "typeface-merriweather"
 import "typeface-source-code-pro"
 
 require("./src/prismjs-theme.css")
-
-// Those were the default gatsby blog fonts
+require("prismjs/plugins/line-numbers/prism-line-numbers.css")

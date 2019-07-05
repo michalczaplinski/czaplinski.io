@@ -10,10 +10,11 @@ body,
 
 /* This is overriding some custom styling in the theme */
 pre[class*="language-"] {
-  padding: 1em;
+  padding: 1.3em;
   margin: 1.75em 0;
   overflow: auto;
-  font-size: 0.85em;
+  font-size: 0.8em;
+  border-radius: 2px;
 }
 
 .gatsby-highlight-code-line {
