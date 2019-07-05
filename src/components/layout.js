@@ -1,22 +1,24 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import { rhythm, scale } from "../utils/typography"
+import { rhythm } from "../utils/typography"
 import Cube from "../components/cube"
 
 class Layout extends React.Component {
   render() {
-    const { location, title, children } = this.props
-    const rootPath = `${__PATH_PREFIX__}/blog`
-    let header
-
-    if (location.pathname === rootPath) {
-      header = (
-        <h1
+    const { title, children } = this.props
+    const header = (
+      <>
+        <Link
+          to="/blog"
+          style={{ boxShadow: "none", marginRight: 20, height: 80 }}
+        >
+          <Cube />
+        </Link>
+        <h3
           style={{
-            ...scale(1.2),
-            marginBottom: rhythm(1.5),
-            marginTop: 0,
+            fontFamily: `Montserrat, sans-serif`,
+            marginTop: 33,
           }}
         >
           <Link
@@ -29,37 +31,10 @@ class Layout extends React.Component {
           >
             {title}
           </Link>
-        </h1>
-      )
-    } else {
-      header = (
-        <>
-          <Link
-            to="/blog"
-            style={{ boxShadow: "none", marginRight: 20, height: 80 }}
-          >
-            <Cube />
-          </Link>
-          <h3
-            style={{
-              fontFamily: `Montserrat, sans-serif`,
-              marginTop: 33,
-            }}
-          >
-            <Link
-              style={{
-                boxShadow: `none`,
-                textDecoration: `none`,
-                color: `inherit`,
-              }}
-              to={`/blog`}
-            >
-              {title}
-            </Link>
-          </h3>
-        </>
-      )
-    }
+        </h3>
+      </>
+    )
+
     return (
       <div
         style={{
@@ -83,7 +58,7 @@ class Layout extends React.Component {
           © {new Date().getFullYear()}
           {` `} Michal Czaplinski
         </footer>
-      </div>
+      </div >
     )
   }
 }
