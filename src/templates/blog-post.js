@@ -13,7 +13,11 @@ class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
 
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout
+        location={this.props.location}
+        title={siteTitle}
+        slug={this.props.data.markdownRemark.fields.slug}
+      >
         <SEO
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
@@ -83,6 +87,9 @@ export const pageQuery = graphql`
       id
       excerpt(pruneLength: 160)
       html
+      fields {
+        slug
+      }
       timeToRead
       frontmatter {
         title

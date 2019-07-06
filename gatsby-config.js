@@ -45,6 +45,7 @@ module.exports = {
               inlineCodeMarker: "÷",
             },
           },
+          `gatsby-remark-social-cards`,
           `gatsby-remark-autolink-headers`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
