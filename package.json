@@ -2,7 +2,7 @@
   "name": "czaplinski.io",
   "private": true,
   "description": "Michals website and blog",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Michal Czaplinski <mmczaplinski@gmail.com>",
   "bugs": {
     "url": "https://github.com/michalczaplinski/czaplinski.io/issues"
