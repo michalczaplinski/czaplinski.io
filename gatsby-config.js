@@ -81,6 +81,5 @@ module.exports = {
       },
     },
     `gatsby-plugin-netlify`,
-    `gatsby-mdx`
   ],
 }
