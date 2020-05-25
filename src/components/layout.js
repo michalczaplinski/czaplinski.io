@@ -49,7 +49,7 @@ const Layout = ({ slug, title, children }) => (
             </Link>
             <h3
               style={{
-                fontFamily: `Montserrat, sans-serif`,
+                fontFamily: `Montserrat, system-ui, sans-serif`,
                 marginTop: 33,
               }}
             >

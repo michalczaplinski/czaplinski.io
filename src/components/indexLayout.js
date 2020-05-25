@@ -42,7 +42,7 @@ class IndexLayout extends React.Component {
           </Link>
           <h3
             style={{
-              fontFamily: `Montserrat, sans-serif`,
+              fontFamily: `Montserrat, system-ui, sans-serif`,
               marginTop: 33,
             }}
           >

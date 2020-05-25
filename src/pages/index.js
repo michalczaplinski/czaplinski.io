@@ -125,13 +125,13 @@ function IndexPage({ location, data }) {
 
   const items = [
     <Link to="/blog" className="App-link">
-      BLOG
+      blog
     </Link>,
     <a href="https://github.com/michalczaplinski" className="App-link">
-      <div>GITHUB</div>
+      <div>github</div>
     </a>,
     <a href="https://twitter.com/C_Z_A_P_L_A" className="App-link">
-      <div>TWITTER</div>
+      <div>twitter</div>
     </a>,
     <div className="App-link">
       {mergeEmail ? (
@@ -163,13 +163,13 @@ function IndexPage({ location, data }) {
               </div>
             </div>
           ) : (
-            <div>EMAIL</div>
+            <div>email</div>
           )}
         </span>
       )}
     </div>,
     <a href="/michal_czaplinski_cv_2019.pdf" className="App-link">
-      <div>RESUME</div>
+      <div>resume</div>
     </a>,
     showBio ? (
       <FadeIn>
@@ -199,6 +199,7 @@ function IndexPage({ location, data }) {
     <animated.div
       style={{
         minHeight: `100vh`,
+        overflow: `hidden`,
         background: degs.interpolate(
           degs =>
             `linear-gradient(${degs}deg, #8dfffb 7%,  #fffaae 20%, #fff662 70%, #ff5151 110%)`
