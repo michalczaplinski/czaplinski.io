@@ -25,10 +25,8 @@ function BioText({ twitterHandle }) {
       <BioLine>
         <span role="img" aria-label="work">
           👨‍💻
-        </span>{" "}
-        <a href="mailto:mmczaplinski@gmail.com">
-          Available for freelance work!
-        </a>
+        </span>
+        Currently working at <a href="https://frontity.org">Frontity</a>
       </BioLine>
       <BioLine>
         <span role="img" aria-label="peru">
