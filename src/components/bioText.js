@@ -20,19 +20,19 @@ function BioText({ twitterHandle }) {
         <span role="img" aria-label="palm">
           🌴
         </span>{" "}
-        I'm a freelance web engineer who loves great UX.
+        I'm a web engineer who loves great UX.
       </BioLine>
       <BioLine>
         <span role="img" aria-label="work">
           👨‍💻
         </span>
-        Currently working at <a href="https://frontity.org">Frontity</a>
+        Working at <a href="https://automattic.com">Automattic</a>
       </BioLine>
       <BioLine>
         <span role="img" aria-label="peru">
           🇵🇪
         </span>{" "}
-        Originally from Poland, currently living in Lima, Peru.
+        Originally from Poland, currently living in Costa da Caparica, Portugal.
       </BioLine>
       <BioLine>
         <span role="img" aria-label="sun">
