@@ -26,7 +26,7 @@ function BioText({ twitterHandle }) {
         <span role="img" aria-label="work">
           👨‍💻
         </span>
-        Working at <a href="https://automattic.com">Automattic</a>
+        Working on WordPress Core at <a href="https://automattic.com">Automattic</a>
       </BioLine>
       <BioLine>
         <span role="img" aria-label="peru">
