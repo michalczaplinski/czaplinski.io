@@ -2,6 +2,7 @@
 title: Build your own MobX-like state management library in 40 lines of code
 pubDate: 2019-05-31
 description: Build your own MobX-like state management library in 40 lines of code.
+heroImage: /blog-placeholder-5.jpg
 ---
 
 ⚠️ **NOTE: This post assumes good familiarity with react**. You don't need to be an expert, if you've used it to make UIs before, you're gonna be fine, I promise 🙂.

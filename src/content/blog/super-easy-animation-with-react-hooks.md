@@ -2,6 +2,7 @@
 title: Super easy react mount/unmount animations with hooks
 pubDate: 2019-07-05
 description: Super easy react mount/unmount animations with hooks.
+heroImage: /blog-placeholder-2.jpg
 ---
 
 One of the main use cases for animations on the web is simply adding and removing elements from the page. However, doing that in react can be a pain in the ass because we cannot directly manipulate the DOM elements! Since we let react take care of rendering, we are forced to do animations the react-way. When faced with this revelation, some developers begin to miss the olden days of jQuery where you could just do:
