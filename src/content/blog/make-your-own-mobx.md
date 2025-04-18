@@ -84,14 +84,13 @@ proxy.number; // 42
 
 This is the "Hello World!" of Proxies - the **target** and **proxy** objects are structurally identical. Thus:
 
-```javascript
+```js
 JSON.stringify(proxy) === JSON.stringify(target); // true
 ```
 
 We can make our proxy a little more interesting by adding **traps** to our `handler` object. Traps are just regular methods that customize the behaviour of `get`, `set`, `delete` operations, etc. Let's modify the code example:
 
-```javascript
-// highlight-range{7-9}
+```js {7-9}
 const target = {
   number: 42,
 };
@@ -111,8 +110,7 @@ proxy.number; //=>  This now returns 43 !
 
 Our original object is unmodified, but now when we use our `proxy` object it "proxies" every property access through the `get` trap. We can now do the same for the `set` operation:
 
-```js
-// highlight-range{5-8}
+```js {5-8}
 const handler = {
   get: (obj, prop) => {
     return obj[prop] + 1;
@@ -142,8 +140,7 @@ The answer is on the right hand side! We want our library to build up a mapping 
 
 Armed with this knowledge, we're ready to sketch out the implementation of the library:
 
-```javascript
-// highlight-range{3-6}
+```js {3-6}
 const reactionsMap = {};
 
 // It will point to a component instance that is being rendered.
@@ -174,8 +171,7 @@ export function view(MyComponent) {
 
 Let's first augument the `view` function with additional functionality...
 
-```javascript
-// highlight-range{19-28}
+```js {19-28}
 const reactionsMap = {};
 let currentlyRenderingComponent;
 
@@ -215,8 +211,7 @@ The interesting stuff is happening **inside** of the `render` function. Try to p
 
 It will become clear from looking at the updated implementation of the `store` function:
 
-```javascript
-// highlight-range{2-23}
+```js {2-23}
 const handler = {
   get: function (target, key) {
     // If there is no component currently rendering it means that
@@ -255,8 +250,7 @@ Our new implementation has a new interesting side-effect: It checks what compone
 
 Great, now we have built up our map of reactions ( which will happen on the first render). But we still need a way to tell react to update the components whenever we `set` a new property on our store. Remember, we want to only update the component that **uses** that updated property. Well, we just use the data from our `reactionsMap`:
 
-```javascript
-// highlight-range{21-25}
+```js {21-25}
 const reactionsMap = {};
 let currentlyRenderingComponent;
 
