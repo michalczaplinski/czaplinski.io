@@ -1,0 +1,300 @@
+<div id="cube-wrapper">
+  <div id="cube-container" class="cube-container cube-container-rotate-once">
+    <div class="cube loc-1">
+      <!-- <div class="face front"></div> -->
+      <div class="face back"></div>
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <div class="face top"></div>
+      <div class="face bottom"></div>
+    </div>
+    <div class="cube loc-2">
+      <!-- <div class="face front"></div> -->
+      <!-- <div class="face back"></div> -->
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <div class="face top"></div>
+      <div class="face bottom"></div>
+    </div>
+    <div class="cube loc-3">
+      <!-- <div class="face front"></div> -->
+      <!-- <div class="face back"></div> -->
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <div class="face top"></div>
+      <div class="face bottom"></div>
+    </div>
+    <div class="cube loc-4">
+      <!-- <div class="face front"></div> -->
+      <!--  <div class="face back"></div> -->
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <div class="face top"></div>
+      <div class="face bottom"></div>
+    </div>
+    <div class="cube loc-5">
+      <div class="face front"></div>
+      <!-- <div class="face back"></div> -->
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <!-- <div class="face top"></div> -->
+      <div class="face bottom"></div>
+    </div>
+    <div class="cube loc-6">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <!-- <div class="face top"></div> -->
+      <!-- <div class="face bottom"></div> -->
+    </div>
+    <div class="cube loc-7">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <!-- <div class="face top"></div> -->
+      <!-- <div class="face bottom"></div> -->
+    </div>
+    <div class="cube loc-8">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <!-- <div class="face top"></div> -->
+      <!-- <div class="face bottom"></div> -->
+    </div>
+    <div class="cube loc-9">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <div class="face left"></div>
+      <!-- <div class="face right"></div> -->
+      <div class="face top"></div>
+      <!-- <div class="face bottom"></div> -->
+    </div>
+    <div class="cube loc-10">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <!-- <div class="face left"></div> -->
+      <!-- <div class="face right"></div> -->
+      <div class="face top"></div>
+      <div class="face bottom"></div>
+    </div>
+    <div class="cube loc-11">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <!-- <div class="face left"></div> -->
+      <!-- <div class="face right"></div> -->
+      <div class="face top"></div>
+      <div class="face bottom"></div>
+    </div>
+    <div class="cube loc-12 clipped">
+      <div class="face front"></div>
+      <div class="face back"></div>
+      <!-- <div class="face left"></div> -->
+      <div class="face right"></div>
+      <div class="face top"></div>
+      <div class="face bottom"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cubeWrapper = document.getElementById("cube-wrapper");
+  const cubeContainer = document.getElementById("cube-container");
+
+  if (cubeWrapper && cubeContainer) {
+    cubeWrapper.addEventListener("mouseenter", () => {
+      cubeContainer.classList.add("cube-container-rotating");
+    });
+
+    cubeWrapper.addEventListener("mouseleave", () => {
+      cubeContainer.classList.remove("cube-container-rotating");
+    });
+  }
+</script>
+
+<style>
+  /* Ensure your theme variables (--theme-left, --main-color, etc.) are defined globally */
+  /* For example, in a global CSS file or a :root declaration */
+
+  .cube-container {
+    transform-style: preserve-3D;
+    scale: 0.5;
+    width: 2em;
+    height: 2em;
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1.5em;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: relative;
+    margin-bottom: 40px;
+    z-index: 9999;
+    transform: rotateX(-35.25deg) rotateY(-45deg);
+    cursor: pointer;
+  }
+
+  .cube-container-rotate-once {
+    animation: rotatorinital 1.8s ease-in-out 0.7s reverse;
+  }
+
+  .cube-container-rotating {
+    animation: rotator 1.8s ease-in-out 0.1s reverse infinite;
+  }
+
+  .cube {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    transform-style: preserve-3D;
+  }
+
+  .cube .face {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    transform-origin: 0 0;
+  }
+
+  .cube .front {
+    background: var(--theme-left);
+  }
+
+  .cube .back {
+    background: var(--main-color);
+    transform: translateZ(-15px) rotateY(180deg) translateX(-15px);
+  }
+
+  .cube .left {
+    background: var(--theme-bottom);
+    transform: rotateY(-90deg) translateX(-15px);
+  }
+
+  .cube .right {
+    background: var(--theme-bottom);
+    transform: rotateY(90deg) translateZ(15px);
+  }
+
+  .cube .top {
+    background: var(--theme-top);
+    transform: rotateX(90deg) translateY(-15px);
+  }
+
+  .cube .bottom {
+    background: var(--main-color);
+    transform: rotateX(-90deg) translateZ(15px);
+  }
+
+  .cube.clipped .front {
+    background: transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+  .cube.clipped .front:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-width: 7.5px;
+    border-color: var(--theme-left) transparent transparent var(--theme-left);
+    border-style: solid;
+    display: block;
+  }
+
+  .cube.clipped .back {
+    background: transparent;
+    border-left: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+  }
+
+  .cube.clipped .back:after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-width: 7.5px;
+    border-color: var(--main-color) var(--main-color) transparent transparent;
+    border-style: solid;
+    display: block;
+  }
+
+  .cube.clipped .right,
+  .cube.clipped .bottom {
+    visibility: hidden;
+  }
+
+  .loc-1 {
+    transform: translate3D(30px, 60px, -30px);
+  }
+
+  .loc-2 {
+    transform: translate3D(30px, 60px, -15px);
+  }
+
+  .loc-3 {
+    transform: translate3D(30px, 60px, 0px);
+  }
+
+  .loc-4 {
+    transform: translate3D(30px, 60px, 15px);
+  }
+
+  .loc-5 {
+    transform: translate3D(30px, 60px, 30px);
+  }
+
+  .loc-6 {
+    transform: translate3D(30px, 45px, 30px);
+  }
+
+  .loc-7 {
+    transform: translate3D(30px, 30px, 30px);
+  }
+
+  .loc-8 {
+    transform: translate3D(30px, 15px, 30px);
+  }
+
+  .loc-9 {
+    transform: translate3D(30px, 0px, 30px);
+  }
+
+  .loc-10 {
+    transform: translate3D(45px, 0px, 30px);
+  }
+
+  .loc-11 {
+    transform: translate3D(60px, 0px, 30px);
+  }
+
+  .loc-12 {
+    transform: translate3D(75px, 0px, 30px);
+  }
+
+  @keyframes rotator {
+    0% {
+      transform: rotateX(-35.25deg) rotateY(-45deg);
+    }
+    50% {
+      transform: rotateX(-35.25deg) rotateY(-45deg);
+    }
+    100% {
+      transform: rotateX(-35.25deg) rotateY(315deg);
+    }
+  }
+
+  @keyframes rotatorinital {
+    0% {
+      transform: rotateX(-35.25deg) rotateY(-45deg);
+    }
+    50% {
+      transform: rotateX(-35.25deg) rotateY(-45deg);
+    }
+    100% {
+      transform: rotateX(-35.25deg) rotateY(315deg);
+    }
+  }
+</style>
