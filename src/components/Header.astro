@@ -11,7 +11,12 @@ import { SITE_TITLE } from "../consts";
         <Logo />
         <h2><a href="/">{SITE_TITLE}</a></h2>
       </div>
-      <button class="hamburger-menu" aria-label="Toggle navigation menu">
+      <button
+        class="hamburger-menu"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="overlay-menu"
+      >
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -52,8 +57,32 @@ import { SITE_TITLE } from "../consts";
       </div>
     </div>
   </nav>
+  <div id="overlay-menu" class="overlay-menu" aria-hidden="true">
+    <button class="close-menu" aria-label="Close navigation menu">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="overlay-nav-links">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+      <!-- Social links can also be added here if desired on mobile -->
+    </div>
+  </div>
 </header>
 <style>
+  body.menu-open {
+    overflow: hidden; /* Prevent body scroll when menu is open */
+  }
+
   header {
     margin: 0;
     padding: 0 1em;
@@ -87,6 +116,7 @@ import { SITE_TITLE } from "../consts";
     justify-content: space-between;
   }
 
+  /* Keep original navigation links for wider screens */
   .navigation-links {
     width: 5em;
     display: inline-block;
@@ -127,7 +157,154 @@ import { SITE_TITLE } from "../consts";
     }
 
     .navigation-links {
-      display: none; /* Hide below 1080px */
+      display: none; /* Hide original links below 1080px */
     }
   }
+
+  /* Overlay Menu Styles */
+  .overlay-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Start off-screen */
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: right 0.3s ease-in-out;
+    visibility: hidden; /* Hide accessibility */
+  }
+
+  .overlay-menu.menu-open {
+    right: 0; /* Slide in */
+    visibility: visible; /* Show accessibility */
+  }
+
+  .close-menu {
+    position: absolute;
+    top: 2em;
+    right: 1.5em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+  }
+
+  .close-menu svg {
+    width: 30px; /* Make close button slightly larger */
+    height: 30px;
+    stroke: var(--main-color);
+  }
+
+  .overlay-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em; /* Increase spacing */
+  }
+
+  .overlay-nav-links > :global(a) {
+    /* Target HeaderLink's 'a' tag */
+    font-size: 1.8em; /* Larger font size */
+    color: var(--main-color);
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-bottom: none; /* Remove default border */
+  }
+
+  .overlay-nav-links > :global(a:hover),
+  .overlay-nav-links > :global(a.active) {
+    color: var(--accent); /* Example hover/active color */
+    text-decoration: underline;
+  }
 </style>
+
+<script>
+  const hamburgerButton =
+    document.querySelector<HTMLButtonElement>(".hamburger-menu");
+  const closeButton = document.querySelector<HTMLButtonElement>(".close-menu");
+  const overlayMenu = document.getElementById("overlay-menu");
+
+  // Ensure overlayMenu exists before querying inside it
+  if (hamburgerButton && closeButton && overlayMenu) {
+    const navLinks = overlayMenu.querySelectorAll<HTMLAnchorElement>(
+      ".overlay-nav-links a"
+    ); // Get all links inside the overlay
+
+    const focusableElements = [closeButton, ...Array.from(navLinks)]; // Convert NodeList to Array and ensure elements are focusable
+    const firstFocusableElement = focusableElements[0] as HTMLElement; // Cast to HTMLElement
+    const lastFocusableElement = focusableElements[
+      focusableElements.length - 1
+    ] as HTMLElement; // Cast to HTMLElement
+
+    const openMenu = () => {
+      overlayMenu.classList.add("menu-open");
+      document.body.classList.add("menu-open"); // Prevent body scroll
+      hamburgerButton.setAttribute("aria-expanded", "true");
+      overlayMenu.setAttribute("aria-hidden", "false");
+      // Delay focus slightly to allow transition to complete visually
+      setTimeout(() => {
+        firstFocusableElement.focus();
+      }, 100); // Adjust delay if needed
+    };
+
+    const closeMenu = () => {
+      overlayMenu.classList.remove("menu-open");
+      document.body.classList.remove("menu-open"); // Allow body scroll
+      hamburgerButton.setAttribute("aria-expanded", "false");
+      overlayMenu.setAttribute("aria-hidden", "true");
+      (hamburgerButton as HTMLElement).focus(); // Cast and return focus
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Add KeyboardEvent type
+      if (
+        event.key === "Escape" &&
+        overlayMenu.classList.contains("menu-open")
+      ) {
+        closeMenu();
+      }
+
+      // Focus trapping logic
+      if (event.key === "Tab" && overlayMenu.classList.contains("menu-open")) {
+        if (event.shiftKey) {
+          // Shift + Tab
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus(); // Already cast
+            event.preventDefault();
+          }
+        } else {
+          // Tab
+          if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement.focus(); // Already cast
+            event.preventDefault();
+          }
+        }
+      }
+    };
+
+    hamburgerButton.addEventListener("click", () => {
+      const isExpanded =
+        hamburgerButton.getAttribute("aria-expanded") === "true";
+      if (isExpanded) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    closeButton.addEventListener("click", closeMenu);
+
+    // Close menu if a link inside it is clicked (optional, good UX for SPAs)
+    navLinks.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", handleKeyDown);
+  } else {
+    console.error("Header menu elements not found.");
+  }
+</script>
