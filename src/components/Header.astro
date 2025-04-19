@@ -174,13 +174,22 @@ import { SITE_TITLE } from "../consts";
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: right 0.3s ease-in-out;
+    transition:
+      right 0.3s ease-in-out,
+      visibility 0.3s; /* Add visibility transition */
     visibility: hidden; /* Hide accessibility */
   }
 
   .overlay-menu.menu-open {
     right: 0; /* Slide in */
     visibility: visible; /* Show accessibility */
+  }
+
+  /* Add closing state */
+  .overlay-menu.closing {
+    right: -100%; /* Slide out */
+    transition: right 0.25s ease-out; /* Closing animation */
+    visibility: visible; /* Keep visible during animation */
   }
 
   .close-menu {
@@ -252,11 +261,18 @@ import { SITE_TITLE } from "../consts";
     };
 
     const closeMenu = () => {
-      overlayMenu.classList.remove("menu-open");
-      document.body.classList.remove("menu-open"); // Allow body scroll
-      hamburgerButton.setAttribute("aria-expanded", "false");
-      overlayMenu.setAttribute("aria-hidden", "true");
-      (hamburgerButton as HTMLElement).focus(); // Cast and return focus
+      // Add closing class to trigger animation
+      overlayMenu.classList.add("closing");
+      overlayMenu.classList.remove("menu-open"); // Keep open class removed for logic, but closing handles visual
+
+      // Wait for animation to finish before hiding and resetting
+      setTimeout(() => {
+        overlayMenu.classList.remove("closing"); // Clean up class
+        document.body.classList.remove("menu-open"); // Allow body scroll
+        hamburgerButton.setAttribute("aria-expanded", "false");
+        overlayMenu.setAttribute("aria-hidden", "true");
+        (hamburgerButton as HTMLElement).focus(); // Cast and return focus
+      }, 250); // Match CSS animation duration (250ms)
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {

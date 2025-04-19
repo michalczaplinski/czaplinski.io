@@ -1,5 +1,7 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro"; // Import the new layout
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
@@ -9,101 +11,106 @@ const posts = (await getCollection("blog")).sort(
 );
 ---
 
-<MainLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <style>
-    /* Keep blog index specific styles */
-    .blog-index-list {
-      /* Add a wrapper class for specificity */
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      /* Adjust width relative to container if needed */
-      max-width: 960px; /* Example max-width */
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .blog-index-list li {
-      width: calc(50% - 1rem);
-    }
-    .blog-index-list li * {
-      text-decoration: none;
-      transition: 0.2s ease;
-    }
-    .blog-index-list li:first-child {
-      width: 100%;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    .blog-index-list li:first-child img {
-      width: 100%;
-      max-width: 720px; /* Match image size */
-      height: auto; /* Maintain aspect ratio */
-    }
-    .blog-index-list li:first-child .title {
-      font-size: 2.369rem;
-    }
-    .blog-index-list li img {
-      margin-bottom: 0.5rem;
-      border-radius: 12px;
-      max-width: 100%; /* Ensure images are responsive */
-      height: auto;
-    }
-    .blog-index-list li a {
-      display: block;
-    }
-    .title {
-      margin: 0;
-      color: rgb(var(--black));
-      line-height: 1;
-    }
-    .date {
-      margin: 0;
-      color: rgb(var(--gray));
-    }
-    .blog-index-list li a:hover h4,
-    .blog-index-list li a:hover .date {
-      color: rgb(var(--accent));
-    }
-    .blog-index-list a:hover img {
-      box-shadow: var(--box-shadow);
-    }
-    @media (max-width: 720px) {
-      /* Keep mobile styles */
-      .blog-index-list {
-        gap: 0.5em;
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      main {
+        width: 720px;
       }
-      .blog-index-list li {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul li {
+        width: calc(50% - 1rem);
+      }
+      ul li * {
+        text-decoration: none;
+        transition: 0.2s ease;
+      }
+      ul li:first-child {
         width: 100%;
+        margin-bottom: 1rem;
         text-align: center;
       }
-      .blog-index-list li:first-child {
-        margin-bottom: 0;
+      ul li:first-child img {
+        width: 100%;
       }
-      .blog-index-list li:first-child .title {
-        font-size: 1.563em;
+      ul li:first-child .title {
+        font-size: 2.369rem;
       }
-    }
-  </style>
-  <section>
-    <ul class="blog-index-list">
-      {
-        posts.map((post) => (
-          <li>
-            <a href={`/blog/${post.id}/`}>
-              {" "}
-              {/* Use post.id */}
-              <img width={720} height={360} src={post.data.heroImage} alt="" />
-              <h4 class="title">{post.data.title}</h4>
-              <p class="date">
-                <FormattedDate date={post.data.pubDate} />
-              </p>
-            </a>
-          </li>
-        ))
+      ul li img {
+        margin-bottom: 0.5rem;
+        border-radius: 12px;
       }
-    </ul>
-  </section>
-</MainLayout>
+      ul li a {
+        display: block;
+      }
+      .title {
+        margin: 0;
+        color: rgb(var(--black));
+        line-height: 1;
+      }
+      .date {
+        margin: 0;
+        color: rgb(var(--gray));
+      }
+      ul li a:hover h4,
+      ul li a:hover .date {
+        color: rgb(var(--accent));
+      }
+      ul a:hover img {
+        box-shadow: var(--box-shadow);
+      }
+      @media (max-width: 720px) {
+        ul {
+          gap: 0.5em;
+        }
+        ul li {
+          width: 100%;
+          text-align: center;
+        }
+        ul li:first-child {
+          margin-bottom: 0;
+        }
+        ul li:first-child .title {
+          font-size: 1.563em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <Header transition:persist />
+    <main>
+      <section>
+        <ul>
+          {
+            posts.map((post) => (
+              <li>
+                <a href={`/blog/${post.id}/`}>
+                  <img
+                    width={720}
+                    height={360}
+                    src={post.data.heroImage}
+                    alt=""
+                  />
+                  <h4 class="title">{post.data.title}</h4>
+                  <p class="date">
+                    <FormattedDate date={post.data.pubDate} />
+                  </p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
