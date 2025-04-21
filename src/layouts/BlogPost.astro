@@ -21,35 +21,58 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
       }
       .hero-image {
         width: 100%;
+        margin-bottom: 3rem;
       }
       .hero-image img {
         display: block;
         margin: 0 auto;
-        border-radius: 12px;
+        max-width: 800px;
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
         box-shadow: var(--box-shadow);
       }
       .prose {
-        width: 720px;
-        max-width: calc(100% - 2em);
+        width: 800px;
+        max-width: calc(100% - 4em);
         margin: auto;
-        padding: 1em;
-        color: rgb(var(--gray-dark));
+        padding: 0 2em 4em;
+        color: rgb(var(--black));
       }
       .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
+        margin-bottom: 3rem;
+        text-align: left;
+        line-height: 1.1;
       }
       .title h1 {
-        margin: 0 0 0.5em 0;
+        margin: 0 0 1rem 0;
+        font-size: 2.5rem;
+        letter-spacing: -0.03em;
       }
       .date {
-        margin-bottom: 0.5em;
+        margin-bottom: 1rem;
         color: rgb(var(--gray));
+        font-size: 0.9rem;
       }
       .last-updated-on {
         font-style: italic;
+        font-size: 0.9rem;
+      }
+
+      hr {
+        margin: 2rem 0;
+        border: none;
+        border-top: 1px solid rgb(var(--gray-light));
+      }
+
+      @media (max-width: 720px) {
+        .prose {
+          padding: 0 1.5rem 3rem;
+          max-width: calc(100% - 2em);
+        }
+        .title h1 {
+          font-size: 2rem;
+        }
       }
     </style>
   </head>
@@ -58,9 +81,6 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     <Header transition:persist />
     <main>
       <article>
-        <div class="hero-image">
-          {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-        </div>
         <div class="prose">
           <div class="title">
             <div class="date">

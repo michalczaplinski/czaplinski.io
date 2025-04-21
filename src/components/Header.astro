@@ -9,7 +9,7 @@ import { SITE_TITLE } from "../consts";
     <div class="header-nav">
       <div class="logo-container">
         <Logo />
-        <h2><a href="/">{SITE_TITLE}</a></h2>
+        <h2 class="site-title"><a href="/">{SITE_TITLE}</a></h2>
       </div>
       <button
         class="hamburger-menu"
@@ -30,8 +30,58 @@ import { SITE_TITLE } from "../consts";
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
       </button>
+      <div class="navigation-links">
+        <HeaderLink href="/">Home</HeaderLink>
+        <HeaderLink href="/blog">Blog</HeaderLink>
+        <div class="social-links">
+          <a href="https://x.com/c_z_a_p_l_a" target="_blank">
+            <span class="sr-only">Follow Michal on X</span>
+            <svg viewBox="0 0 25 25" aria-hidden="true" width="32" height="32"
+              ><path
+                fill="currentColor"
+                d="M13.982 10.622 20.54 3h-1.554l-5.693 6.618L8.745 3H3.5l6.876 10.007L3.5 21h1.554l6.012-6.989L15.868 21h5.245l-7.131-10.378Zm-2.128 2.474-.697-.997-5.543-7.93H8l4.474 6.4.697.996 5.815 8.318h-2.387l-4.745-6.787Z"
+              ></path></svg
+            >
+          </a>
+          <a href="https://github.com/michalczaplinski" target="_blank">
+            <span class="sr-only">Go to Michal's GitHub repo</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
+              ><path
+                fill="currentColor"
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+              ></path></svg
+            >
+          </a>
+          <a
+            href="https://www.linkedin.com/in/michal-czaplinski/"
+            target="_blank"
+          >
+            <span class="sr-only">Go to Michal's LinkedIn profile</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="32" height="32">
+              <path
+                fill="currentColor"
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="navigation-links">
+  </nav>
+  <div id="overlay-menu" class="overlay-menu" aria-hidden="true">
+    <button class="close-menu" aria-label="Close navigation menu">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="overlay-nav-links">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
       <div class="social-links">
@@ -53,26 +103,19 @@ import { SITE_TITLE } from "../consts";
             ></path></svg
           >
         </a>
+        <a
+          href="https://www.linkedin.com/in/michal-czaplinski/"
+          target="_blank"
+        >
+          <span class="sr-only">Go to Michal's LinkedIn profile</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" width="32" height="32">
+            <path
+              fill="currentColor"
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+            ></path>
+          </svg>
+        </a>
       </div>
-    </div>
-  </nav>
-  <div id="overlay-menu" class="overlay-menu" aria-hidden="true">
-    <button class="close-menu" aria-label="Close navigation menu">
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <line x1="18" y1="6" x2="6" y2="18"></line>
-        <line x1="6" y1="6" x2="18" y2="18"></line>
-      </svg>
-    </button>
-    <div class="overlay-nav-links">
-      <HeaderLink href="/">Home</HeaderLink>
-      <HeaderLink href="/blog">Blog</HeaderLink>
-      <!-- Social links can also be added here if desired on mobile -->
     </div>
   </div>
 </header>
@@ -83,29 +126,42 @@ import { SITE_TITLE } from "../consts";
 
   header {
     margin: 0;
-    padding: 0 1em;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgb(var(--gray-light));
   }
+
   .logo-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  h2 {
-    margin: 0;
-    font-size: 1em;
+    gap: 0.75rem;
   }
 
   h2 a,
   h2 a.active {
     text-decoration: none;
+    color: rgb(var(--black));
   }
 
   .header-nav a,
   .navigation-links a {
-    padding: 0.5em 0.3em;
-    color: var(--black);
-    border-bottom: 4px solid transparent;
+    padding: 0.5rem;
+    color: rgb(var(--gray));
     text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+
+  .site-title a {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .header-nav a:hover,
+  .navigation-links a:hover {
+    color: rgb(var(--black));
   }
 
   .header-nav {
@@ -116,24 +172,32 @@ import { SITE_TITLE } from "../consts";
 
   /* Keep original navigation links for wider screens */
   .navigation-links {
-    width: 5em;
-    display: inline-block;
-    position: fixed;
-    left: 1.8em;
+    display: flex;
+    gap: 1.8em;
   }
 
   .navigation-links a.active {
-    text-decoration: none;
+    color: rgb(var(--black));
+    font-weight: 600;
   }
 
   .social-links,
   .social-links a {
     display: flex;
+    gap: 0.5rem;
   }
-  @media (max-width: 720px) {
-    .social-links {
-      display: none;
-    }
+
+  .social-links a {
+    color: rgb(var(--gray));
+    transition: color 0.15s ease;
+  }
+
+  .social-links a:hover {
+    color: rgb(var(--black));
+  }
+
+  .overlay-nav-links .social-links {
+    gap: 1.5rem;
   }
 
   .hamburger-menu {
@@ -141,12 +205,13 @@ import { SITE_TITLE } from "../consts";
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5em;
+    padding: 0.5rem;
+    color: rgb(var(--gray));
   }
 
   .hamburger-menu svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
   }
 
   @media (max-width: 1080px) {
@@ -166,7 +231,7 @@ import { SITE_TITLE } from "../consts";
     right: -100%; /* Start off-screen */
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: rgb(var(--background));
     z-index: 1000;
     display: flex;
     flex-direction: column;
@@ -192,40 +257,40 @@ import { SITE_TITLE } from "../consts";
 
   .close-menu {
     position: absolute;
-    top: 2em;
-    right: 1.5em;
+    top: 1.5rem;
+    right: 1.5rem;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5em;
+    padding: 0.5rem;
+    color: rgb(var(--gray));
   }
 
   .close-menu svg {
-    width: 30px; /* Make close button slightly larger */
-    height: 30px;
-    stroke: var(--main-color);
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
   }
 
   .overlay-nav-links {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2em; /* Increase spacing */
+    gap: 2rem;
   }
 
   .overlay-nav-links > :global(a) {
     /* Target HeaderLink's 'a' tag */
-    font-size: 1.8em; /* Larger font size */
-    color: var(--main-color);
+    font-size: 1.25rem;
+    color: rgb(var(--gray));
     text-decoration: none;
-    padding: 0.5em 1em;
-    border-bottom: none; /* Remove default border */
+    padding: 0.5rem;
+    transition: color 0.15s ease;
   }
 
   .overlay-nav-links > :global(a:hover),
   .overlay-nav-links > :global(a.active) {
-    color: var(--accent); /* Example hover/active color */
-    text-decoration: underline;
+    color: rgb(var(--black));
   }
 </style>
 
@@ -311,11 +376,6 @@ import { SITE_TITLE } from "../consts";
     });
 
     closeButton.addEventListener("click", closeMenu);
-
-    // Close menu if a link inside it is clicked (optional, good UX for SPAs)
-    navLinks.forEach((link) => {
-      link.addEventListener("click", closeMenu);
-    });
 
     document.addEventListener("keydown", handleKeyDown);
   } else {

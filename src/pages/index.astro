@@ -5,7 +5,84 @@ import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
-<!doctype html>
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 60vh;
+    padding: 2rem 0;
+  }
+
+  h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    letter-spacing: -0.04em;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    color: rgb(var(--gray));
+    margin-bottom: 2.5rem;
+  }
+
+  .links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .primary-link,
+  .secondary-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.15s ease;
+  }
+
+  .primary-link {
+    background-color: var(--accent);
+    color: white;
+  }
+
+  .primary-link:hover {
+    background-color: var(--accent-dark);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .secondary-link {
+    background-color: rgb(var(--subtle-bg));
+    color: rgb(var(--black));
+    border: 1px solid rgb(var(--gray-light));
+  }
+
+  .secondary-link:hover {
+    background-color: rgb(var(--gray-light));
+    color: rgb(var(--black));
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 720px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero {
+      min-height: 50vh;
+    }
+  }
+</style>
+
 <html lang="en">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
@@ -13,9 +90,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
   <body>
     <Header transition:persist />
     <main>
-      Hi, I'm Michał.
-
-      <p>I'm a software engineer.</p>
+      <section class="hero">
+        <h1>Hi, I'm Michał.</h1>
+        <p class="subtitle">I'm a software engineer.</p>
+        <div class="links">
+          <a href="/blog" class="primary-link">Read my blog</a>
+          <a
+            href="https://github.com/michalczaplinski"
+            target="_blank"
+            class="secondary-link">GitHub</a
+          >
+        </div>
+      </section>
     </main>
     <Footer />
   </body>

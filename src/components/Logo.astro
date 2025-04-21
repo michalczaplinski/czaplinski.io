@@ -125,14 +125,14 @@
 
   .cube-container {
     transform-style: preserve-3D;
-    scale: 0.5;
+    scale: 0.4;
     width: 2em;
     height: 2em;
-    padding-top: 1em;
-    padding-right: 1.5em;
+    padding-top: 0.5em;
+    padding-right: 1em;
     margin: auto;
     position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     z-index: 9999;
     transform: rotateX(-35.25deg) rotateY(-45deg);
     cursor: pointer;
@@ -149,7 +149,7 @@
   /* Add a class for hover rotation */
   .cube-container-rotating {
     /* Use the rotator keyframes and make it repeat */
-    animation: rotator 1.8s linear infinite;
+    animation: rotator 2.5s linear infinite;
   }
 
   .cube {
@@ -167,31 +167,31 @@
   }
 
   .cube .front {
-    background: var(--theme-left);
+    background: var(--accent);
   }
 
   .cube .back {
-    background: var(--main-color);
+    background: rgb(var(--black));
     transform: translateZ(-15px) rotateY(180deg) translateX(-15px);
   }
 
   .cube .left {
-    background: var(--theme-bottom);
+    background: rgb(var(--gray));
     transform: rotateY(-90deg) translateX(-15px);
   }
 
   .cube .right {
-    background: var(--theme-bottom);
+    background: rgb(var(--gray));
     transform: rotateY(90deg) translateZ(15px);
   }
 
   .cube .top {
-    background: var(--theme-top);
+    background: rgb(var(--gray-light));
     transform: rotateX(90deg) translateY(-15px);
   }
 
   .cube .bottom {
-    background: var(--main-color);
+    background: rgb(var(--gray-dark));
     transform: rotateX(-90deg) translateZ(15px);
   }
 
@@ -206,7 +206,7 @@
     width: 0px;
     height: 0px;
     border-width: 7.5px;
-    border-color: var(--theme-left) transparent transparent var(--theme-left);
+    border-color: var(--accent) transparent transparent var(--accent);
     border-style: solid;
     display: block;
   }
@@ -222,7 +222,7 @@
     width: 0px;
     height: 0px;
     border-width: 7.5px;
-    border-color: var(--main-color) var(--main-color) transparent transparent;
+    border-color: rgb(var(--black)) rgb(var(--black)) transparent transparent;
     border-style: solid;
     display: block;
   }

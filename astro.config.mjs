@@ -7,4 +7,9 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://czaplinski.io",
   integrations: [mdx(), sitemap()],
+  markdown: {
+    shikiConfig: {
+      theme: "nord",
+    },
+  },
 });
