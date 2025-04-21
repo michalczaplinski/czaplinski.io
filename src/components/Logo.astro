@@ -105,10 +105,15 @@
 
   if (cubeWrapper && cubeContainer) {
     cubeWrapper.addEventListener("mouseenter", () => {
+      // Use a new class for continuous/repeated rotation on hover
       cubeContainer.classList.add("cube-container-rotating");
+      // Remove the initial animation class if it exists
+      cubeContainer.classList.remove("cube-container-rotate-once");
+      cubeContainer.classList.remove("cube-container-rotate-again");
     });
 
     cubeWrapper.addEventListener("mouseleave", () => {
+      // Remove the hover rotation class
       cubeContainer.classList.remove("cube-container-rotating");
     });
   }
@@ -137,8 +142,14 @@
     animation: rotatorinital 1.8s ease-in-out 0.7s reverse;
   }
 
+  .cube-container-rotate-again {
+    animation: rotatorinital 1.8s ease-in-out 0.7s reverse;
+  }
+
+  /* Add a class for hover rotation */
   .cube-container-rotating {
-    animation: rotator 1.8s ease-in-out 0.1s reverse infinite;
+    /* Use the rotator keyframes and make it repeat */
+    animation: rotator 1.8s linear infinite;
   }
 
   .cube {

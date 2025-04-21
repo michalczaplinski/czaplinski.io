@@ -5,38 +5,36 @@
  */
 
 :root {
-  --accent: #ff5151;
-  --accent-dark: #000d8a;
+  /* Pastel Palette */
+  --accent: #d05d49; /* Thistle */
+  --accent-dark: #438892;
+  --main-color: #555555; /* Dark Gray */
+  --theme-left: var(--accent); /* Thistle */
+  --theme-bottom: var(--main-color); /* Dark Gray */
+  --theme-top: #75d6e5; /* PowderBlue */
+
+  /* Grays and Blacks (adjust slightly if needed) */
   --black: 15, 18, 25;
-  --gray: 96, 115, 159;
-  --gray-light: 229, 233, 240;
-  --gray-dark: 34, 41, 57;
+  --gray-dark: 50, 50, 50; /* Softer Dark */
+  --gray: 150, 150, 150; /* Medium Gray */
+  --gray-light: 230, 230, 230; /* Lighter Gray */
   --gray-gradient: rgba(var(--gray-light), 50%), #fff;
   --box-shadow: 0 2px 6px rgba(var(--gray), 25%),
     0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%);
-
-  --main-color: #404040;
-  --theme-left: #ff5151;
-  --theme-bottom: var(--main-color);
-  --theme-top: #8dfffb;
 }
 
 @font-face {
-  font-family: "Atkinson";
-  src: url("/fonts/atkinson-regular.woff") format("woff");
-  font-weight: 400;
+  font-family: "Lora";
+  src: url("/fonts/lora-regular.woff2") format("woff2");
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
-}
-@font-face {
-  font-family: "Atkinson";
-  src: url("/fonts/atkinson-bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
 }
 body {
-  font-family: "Atkinson", sans-serif;
+  font-family: "Lora", serif; /* Updated Font */
   margin: 0;
   padding: 0;
   text-align: left;
@@ -87,7 +85,7 @@ a {
   color: var(--accent);
 }
 a:hover {
-  color: var(--accent);
+  color: var(--accent-dark); /* Use darker accent on hover */
 }
 p {
   margin-bottom: 1em;
