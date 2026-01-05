@@ -171,27 +171,27 @@
   }
 
   .cube .back {
-    background: rgb(var(--black));
+    background: var(--blueprint-blue);
     transform: translateZ(-15px) rotateY(180deg) translateX(-15px);
   }
 
   .cube .left {
-    background: rgb(var(--gray));
+    background: var(--text-secondary);
     transform: rotateY(-90deg) translateX(-15px);
   }
 
   .cube .right {
-    background: rgb(var(--gray));
+    background: var(--text-secondary);
     transform: rotateY(90deg) translateZ(15px);
   }
 
   .cube .top {
-    background: rgb(var(--gray-light));
+    background: var(--blueprint-blue-light);
     transform: rotateX(90deg) translateY(-15px);
   }
 
   .cube .bottom {
-    background: rgb(var(--gray-dark));
+    background: var(--blueprint-blue);
     transform: rotateX(-90deg) translateZ(15px);
   }
 
@@ -222,7 +222,8 @@
     width: 0px;
     height: 0px;
     border-width: 7.5px;
-    border-color: rgb(var(--black)) rgb(var(--black)) transparent transparent;
+    border-color: var(--blueprint-blue) var(--blueprint-blue) transparent
+      transparent;
     border-style: solid;
     display: block;
   }

@@ -4,7 +4,8 @@
 
 :root {
   /* Blueprint Palette */
-  --blueprint-blue: #0044cc; /* Deep Electric Blue */
+  --blueprint-blue: #0044cc; /* Deep Electric Blue (Restored) */
+  --blueprint-blue-light: #6699ff; /* Light Electric Blue */
   --blueprint-grid: rgba(255, 255, 255, 0.15);
   --blueprint-white: #ffffff;
   --blueprint-accent: #f0f0f0; /* Off-white for less important text */

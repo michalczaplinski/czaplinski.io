@@ -45,6 +45,12 @@ const posts = (await getCollection("blog")).sort(
       }
       ul li a {
         display: block;
+        border: none; /* Remove global link border */
+      }
+      ul li a:hover {
+        background: none; /* Remove global link background */
+        box-shadow: none; /* Remove global link shadow */
+        color: inherit; /* Don't change text color of the container, let specific children handle it */
       }
       .title {
         margin: 0 0 0.5rem 0;

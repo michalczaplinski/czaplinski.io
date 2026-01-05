@@ -9,7 +9,7 @@ export default defineConfig({
   integrations: [mdx(), sitemap()],
   markdown: {
     shikiConfig: {
-      theme: "nord",
+      theme: "houston",
     },
   },
 });
