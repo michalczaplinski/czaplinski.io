@@ -133,6 +133,7 @@ code {
   border-radius: 0;
   font-family: monospace; /* Default monospace usually fits blueprint/schematic vibe well */
   font-weight: bold;
+  font-size: 14px;
 }
 
 pre {
@@ -142,6 +143,7 @@ pre {
   border-radius: 0; /* Sharp corners */
   overflow-x: auto;
   box-shadow: var(--box-shadow);
+  font-size: 13px;
 }
 
 pre > code {
