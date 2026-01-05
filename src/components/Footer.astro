@@ -42,10 +42,13 @@ const today = new Date();
 <style>
   footer {
     padding: 3rem 2rem;
-    border-top: 1px solid rgb(var(--gray-light));
-    color: rgb(var(--gray));
+    border-top: 2px solid var(--border-color);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--text-secondary);
     text-align: center;
     font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   .social-links {
     display: flex;
@@ -55,11 +58,14 @@ const today = new Date();
   }
   .social-links a {
     text-decoration: none;
-    color: rgb(var(--gray));
+    color: var(--text-secondary);
     transition: color 0.15s ease;
+    border-bottom: none; /* Override global link style */
   }
   .social-links a:hover {
-    color: rgb(var(--black));
+    color: var(--accent);
+    background: none;
+    box-shadow: none;
   }
 
   @media (max-width: 720px) {

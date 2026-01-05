@@ -6,79 +6,226 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 ---
 
 <style>
+  main {
+    width: 1000px; /* Wider for the hero layout */
+    max-width: calc(100% - 2em);
+  }
+
   .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 6rem 0;
+    position: relative;
+  }
+
+  .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    min-height: 60vh;
-    padding: 2rem 0;
+    z-index: 10;
   }
 
   h1 {
-    font-size: 3.5rem;
-    line-height: 1.1;
-    margin-bottom: 1rem;
+    font-size: 5rem; /* Massive */
+    line-height: 0.9;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.04em;
+    text-transform: uppercase;
+    color: var(--text-main);
+    text-shadow: 4px 4px 0px rgba(255, 255, 255, 0.1);
+  }
+
+  h1 span {
+    display: block;
+    font-size: 0.5em; /* Smaller "Hi I'm" */
+    color: var(--accent);
+    margin-bottom: 0px;
+    letter-spacing: 0.05em;
   }
 
   .subtitle {
     font-size: 1.5rem;
-    color: rgb(var(--gray));
+    color: var(--text-secondary);
     margin-bottom: 2.5rem;
+    font-weight: 400;
+    border-left: 4px solid var(--accent);
+    padding-left: 1rem;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05), transparent);
+    padding: 1rem;
   }
 
   .links {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-top: 1rem;
   }
 
   .primary-link,
   .secondary-link {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    font-weight: 900;
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    border: 2px solid var(--border-color);
   }
 
   .primary-link {
     background-color: var(--accent);
-    color: white;
+    color: var(--blueprint-blue);
+    border-color: var(--accent);
   }
 
   .primary-link:hover {
-    background-color: var(--accent-dark);
-    color: white;
-    transform: translateY(-1px);
+    background-color: var(--blueprint-white);
+    color: var(--blueprint-blue);
+    transform: translate(-4px, -4px);
+    box-shadow: 6px 6px 0px rgba(255, 255, 255, 0.2);
   }
 
   .secondary-link {
-    background-color: rgb(var(--subtle-bg));
-    color: rgb(var(--black));
-    border: 1px solid rgb(var(--gray-light));
+    background-color: transparent;
+    color: var(--text-main);
   }
 
   .secondary-link:hover {
-    background-color: rgb(var(--gray-light));
-    color: rgb(var(--black));
-    transform: translateY(-1px);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--accent);
+    border-color: var(--accent);
   }
 
-  @media (max-width: 720px) {
-    h1 {
-      font-size: 2.5rem;
+  /* Image Section */
+  .hero-image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-image {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border: 4px solid var(--border-color);
+    z-index: 2;
+    position: relative;
+    filter: grayscale(100%) contrast(120%); /* Classic blueprint technical photo look */
+    transition: all 0.5s ease;
+  }
+
+  .hero-image-container:hover .hero-image {
+    filter: grayscale(0%) contrast(100%);
+  }
+
+  /* Decorative Elements */
+  .circle-deco {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 350px;
+    height: 350px;
+    border: 2px dashed var(--accent);
+    border-radius: 50%;
+    z-index: 1;
+    animation: rotate 60s linear infinite;
+  }
+
+  .square-deco {
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--blueprint-grid);
+    z-index: 0;
+  }
+
+  .crosshair {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: 10;
+  }
+  .crosshair::before,
+  .crosshair::after {
+    content: "";
+    position: absolute;
+    background: var(--accent);
+  }
+  .crosshair::before {
+    width: 2px;
+    height: 20px;
+    left: 9px;
+  }
+  .crosshair::after {
+    height: 2px;
+    width: 20px;
+    top: 9px;
+  }
+
+  .c-tl {
+    top: -10px;
+    left: -10px;
+  }
+  .c-tr {
+    top: -10px;
+    right: -10px;
+  }
+  .c-bl {
+    bottom: -10px;
+    left: -10px;
+  }
+  .c-br {
+    bottom: -10px;
+    right: -10px;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 3rem;
+      padding: 3rem 0;
+    }
+
+    .hero-content {
+      align-items: center;
     }
 
     .subtitle {
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
+      border-left: none;
+      border-top: 4px solid var(--accent);
+      padding-left: 1rem;
+      padding-right: 1rem;
+      max-width: 500px;
     }
 
-    .hero {
-      min-height: 50vh;
+    h1 {
+      font-size: 3.5rem;
+    }
+
+    .circle-deco {
+      width: 280px;
+      height: 280px;
+      right: auto;
+    }
+
+    .hero-image {
+      width: 280px;
+      height: 280px;
     }
   }
 </style>
@@ -91,15 +238,35 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
     <Header transition:persist />
     <main>
       <section class="hero">
-        <h1>Hi, I'm Michał.</h1>
-        <p class="subtitle">I'm a software engineer.</p>
-        <div class="links">
-          <a href="/blog" class="primary-link">Read my blog</a>
-          <a
-            href="https://github.com/michalczaplinski"
-            target="_blank"
-            class="secondary-link">GitHub</a
-          >
+        <div class="hero-content">
+          <h1><span>Hi, I'm</span> Michał</h1>
+          <p class="subtitle">
+            Software Engineer. Building precise, scalable, and beautiful digital
+            solutions.
+          </p>
+          <div class="links">
+            <a href="/blog" class="primary-link">Read my blog</a>
+            <a
+              href="https://github.com/michalczaplinski"
+              target="_blank"
+              class="secondary-link">GitHub</a
+            >
+          </div>
+        </div>
+
+        <div class="hero-image-container">
+          <div class="square-deco">
+            <div class="crosshair c-tl"></div>
+            <div class="crosshair c-tr"></div>
+            <div class="crosshair c-bl"></div>
+            <div class="crosshair c-br"></div>
+          </div>
+          <div class="circle-deco"></div>
+          <img
+            src="/assets/michal.jpg"
+            alt="Michał Czapliński"
+            class="hero-image"
+          />
         </div>
       </section>
     </main>

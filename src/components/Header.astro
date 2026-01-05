@@ -121,47 +121,75 @@ import { SITE_TITLE } from "../consts";
 </header>
 <style>
   body.menu-open {
-    overflow: hidden; /* Prevent body scroll when menu is open */
+    overflow: hidden;
   }
 
   header {
     margin: 0;
     padding: 1rem 2rem;
-    border-bottom: 1px solid rgb(var(--gray-light));
+    border-bottom: 2px solid var(--border-color);
+    background-color: var(--blueprint-blue);
+    position: relative;
+    z-index: 100;
+  }
+
+  /* Decorative corners for header */
+  header::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background: var(--blueprint-blue);
+    border: 2px solid var(--border-color);
+    transform: rotate(45deg);
+  }
+
+  header::before {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    background: var(--blueprint-blue);
+    border: 2px solid var(--border-color);
+    transform: rotate(45deg);
   }
 
   .logo-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
+  /* Reset link styles inside header components that shouldn't look like text links */
   h2 a,
-  h2 a.active {
-    text-decoration: none;
-    color: rgb(var(--black));
+  .logo-container a {
+    border-bottom: none;
   }
 
-  .header-nav a,
-  .navigation-links a {
-    padding: 0.5rem;
-    color: rgb(var(--gray));
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: color 0.15s ease;
+  h2 a:hover,
+  .logo-container a:hover {
+    background-color: transparent;
+    box-shadow: none;
+    color: var(--accent);
+  }
+
+  h2 {
+    border-bottom: none; /* Remove h2 decorative underline */
+    padding-bottom: 0;
   }
 
   .site-title a {
     margin: 0;
-    font-size: 1rem;
-    font-weight: 500;
-  }
-
-  .header-nav a:hover,
-  .navigation-links a:hover {
-    color: rgb(var(--black));
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-main);
   }
 
   .header-nav {
@@ -170,68 +198,82 @@ import { SITE_TITLE } from "../consts";
     justify-content: space-between;
   }
 
-  /* Keep original navigation links for wider screens */
   .navigation-links {
     display: flex;
-    gap: 1.8em;
+    gap: 1rem;
+    align-items: center;
   }
 
-  .navigation-links a.active {
-    color: rgb(var(--black));
-    font-weight: 600;
+  /* Ensure HeaderLinks don't get double borders from global a styles if problematic, 
+     but HeaderLink.astro handles its own styles largely. */
+  .navigation-links :global(a) {
+    border-bottom: 2px solid transparent; /* Override global default */
   }
 
-  .social-links,
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-left: 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--blueprint-grid);
+  }
+
   .social-links a {
     display: flex;
-    gap: 0.5rem;
-  }
-
-  .social-links a {
-    color: rgb(var(--gray));
-    transition: color 0.15s ease;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    border-bottom: none;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--border-color);
+    transition: all 0.2s ease;
   }
 
   .social-links a:hover {
-    color: rgb(var(--black));
-  }
-
-  .overlay-nav-links .social-links {
-    gap: 1.5rem;
+    background-color: var(--accent);
+    color: var(--blueprint-blue);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 var(--blueprint-grid);
   }
 
   .hamburger-menu {
-    display: none; /* Hidden by default */
+    display: none;
     background: none;
-    border: none;
+    border: 2px solid var(--border-color);
     cursor: pointer;
     padding: 0.5rem;
-    color: rgb(var(--gray));
+    color: var(--text-main);
+  }
+
+  .hamburger-menu:hover {
+    background-color: var(--accent);
+    color: var(--blueprint-blue);
   }
 
   .hamburger-menu svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 
   @media (max-width: 1080px) {
     .hamburger-menu {
-      display: block; /* Show below 1080px */
+      display: block;
     }
 
     .navigation-links {
-      display: none; /* Hide original links below 1080px */
+      display: none;
     }
   }
 
-  /* Overlay Menu Styles */
+  /* Overlay Menu */
   .overlay-menu {
     position: fixed;
     top: 0;
-    right: -100%; /* Start off-screen */
+    right: -100%;
     width: 100%;
     height: 100%;
-    background-color: rgb(var(--background));
+    background-color: var(--blueprint-blue);
     z-index: 1000;
     display: flex;
     flex-direction: column;
@@ -239,20 +281,24 @@ import { SITE_TITLE } from "../consts";
     justify-content: center;
     transition:
       right 0.3s ease-in-out,
-      visibility 0.3s; /* Add visibility transition */
-    visibility: hidden; /* Hide accessibility */
+      visibility 0.3s;
+    visibility: hidden;
+    /* decorative grid overlay */
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   .overlay-menu.menu-open {
-    right: 0; /* Slide in */
-    visibility: visible; /* Show accessibility */
+    right: 0;
+    visibility: visible;
   }
 
-  /* Add closing state */
   .overlay-menu.closing {
-    right: -100%; /* Slide out */
-    transition: right 0.25s ease-out; /* Closing animation */
-    visibility: visible; /* Keep visible during animation */
+    right: -100%;
+    transition: right 0.25s ease-out;
+    visibility: visible;
   }
 
   .close-menu {
@@ -260,10 +306,16 @@ import { SITE_TITLE } from "../consts";
     top: 1.5rem;
     right: 1.5rem;
     background: none;
-    border: none;
+    border: 2px solid var(--border-color);
     cursor: pointer;
     padding: 0.5rem;
-    color: rgb(var(--gray));
+    color: var(--text-main);
+    transition: all 0.2s;
+  }
+
+  .close-menu:hover {
+    background-color: var(--accent);
+    color: var(--blueprint-blue);
   }
 
   .close-menu svg {
@@ -280,17 +332,27 @@ import { SITE_TITLE } from "../consts";
   }
 
   .overlay-nav-links > :global(a) {
-    /* Target HeaderLink's 'a' tag */
-    font-size: 1.25rem;
-    color: rgb(var(--gray));
+    font-size: 2rem;
+    color: var(--text-main);
     text-decoration: none;
-    padding: 0.5rem;
-    transition: color 0.15s ease;
+    padding: 1rem 2rem;
+    border: 2px solid var(--border-color);
+    text-transform: uppercase;
+    font-weight: 900;
+    background-color: rgba(0, 0, 0, 0.3);
   }
 
   .overlay-nav-links > :global(a:hover),
   .overlay-nav-links > :global(a.active) {
-    color: rgb(var(--black));
+    color: var(--blueprint-blue);
+    background-color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .overlay-nav-links .social-links {
+    margin: 0;
+    padding: 0;
+    border: none;
   }
 </style>
 

@@ -1,33 +1,31 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+  Blueprint Design Aesthetic
  */
 
 :root {
-  /* Vercel-inspired Minimalist Palette */
-  --accent: #0070f3; /* Vercel blue */
-  --accent-dark: #0050d0;
-  --main-color: #000000; /* Pure black */
+  /* Blueprint Palette */
+  --blueprint-blue: #0044cc; /* Deep Electric Blue */
+  --blueprint-grid: rgba(255, 255, 255, 0.15);
+  --blueprint-white: #ffffff;
+  --blueprint-accent: #f0f0f0; /* Off-white for less important text */
+  --neon-yellow: #ccff00;
+  --neon-pink: #ff00cc;
 
-  /* Monochromatic Scheme */
-  --black: 0, 0, 0;
-  --gray-dark: 51, 51, 51; /* #333333 */
-  --gray: 102, 102, 102; /* #666666 */
-  --gray-light: 229, 231, 235; /* #E5E7EB */
-  --background: 255, 255, 255; /* Pure white */
-  --subtle-bg: 249, 250, 251; /* #F9FAFB - very light gray for subtle backgrounds */
+  /* Semantic Variables */
+  --background: var(--blueprint-blue);
+  --text-main: var(--blueprint-white);
+  --text-secondary: var(--blueprint-accent);
+  --accent: var(--neon-yellow);
+  --accent-secondary: var(--neon-pink);
 
-  /* Minimal Shadows */
-  --box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --border-color: var(--blueprint-white);
+  --box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
 }
-
-/* Lora font has been removed in favor of using only Satoshi */
 
 @font-face {
   font-family: "Satoshi";
   src: url("/fonts/Satoshi-Regular.woff2") format("woff2");
-  font-weight: 400 700;
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }
@@ -37,20 +35,37 @@ body {
   margin: 0;
   padding: 0;
   text-align: left;
-  background: rgb(var(--background));
+  background-color: var(--background);
+  /* Blueprint Grid Pattern */
+  background-image: linear-gradient(var(--blueprint-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blueprint-grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center top;
+
   word-wrap: break-word;
   overflow-wrap: break-word;
-  color: rgb(var(--black));
-  font-size: 16px;
-  line-height: 1.8;
-  letter-spacing: -0.011em;
+  color: var(--text-main);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
+
 main {
-  width: 720px;
+  width: 800px;
   max-width: calc(100% - 2em);
   margin: auto;
   padding: 3em 1em;
+  background-color: rgba(
+    0,
+    68,
+    204,
+    0.9
+  ); /* Slight overlay to ensure readability if needed, or keeping transparent */
+  background-color: transparent;
+  position: relative;
 }
+
+/* Headings */
 h1,
 h2,
 h3,
@@ -58,94 +73,137 @@ h4,
 h5,
 h6 {
   margin: 0 0 1rem 0;
-  color: rgb(var(--black));
-  line-height: 1.15;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  color: var(--text-main);
+  line-height: 1.1;
+  font-weight: 900; /* Extra Bold */
+  letter-spacing: -0.03em;
+  text-transform: uppercase; /* Blueprint technical feel */
 }
+
 h1 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
 }
 h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
 }
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 h4 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
-h5 {
-  font-size: 1rem;
-}
-strong,
-b {
-  font-weight: 700;
-}
+
+/* Links */
 a {
-  color: var(--accent);
+  color: var(--text-main);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.15s ease;
+  border-bottom: 2px solid var(--accent);
+  font-weight: 700;
+  transition: all 0.2s ease;
 }
+
 a:hover {
-  color: var(--accent-dark);
+  background-color: var(--accent);
+  color: var(--blueprint-blue);
+  box-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5);
 }
+
+/* Utility / Text */
 p {
   margin-bottom: 1.5em;
+  font-weight: 500;
 }
-.prose p {
-  margin-bottom: 1.75em;
+
+strong,
+b {
+  font-weight: 900;
+  color: var(--accent);
 }
-textarea {
-  width: 100%;
-  font-size: 16px;
+
+/* Code Blocks */
+code {
+  padding: 2px 6px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 0;
+  font-family: monospace; /* Default monospace usually fits blueprint/schematic vibe well */
+  font-weight: bold;
 }
-input {
-  font-size: 16px;
+
+pre {
+  padding: 1.5rem;
+  background-color: #000033; /* Very dark blue for code contrast */
+  border: 2px solid var(--border-color);
+  border-radius: 0; /* Sharp corners */
+  overflow-x: auto;
+  box-shadow: var(--box-shadow);
 }
+
+pre > code {
+  all: unset;
+  color: var(--text-main);
+}
+
+/* Quote */
+blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 0 0 0 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  font-size: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+}
+
+hr {
+  border: none;
+  border-top: 2px dashed var(--border-color);
+  margin: 3rem 0;
+  opacity: 0.5;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid var(--border-color);
+  border-radius: 0; /* No rounded corners */
+  box-shadow: var(--box-shadow);
+}
+
+/* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5em 0;
+  border: 2px solid var(--border-color);
 }
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 4px;
+
+th,
+td {
+  padding: 0.75rem;
+  border: 1px solid var(--blueprint-grid);
+  text-align: left;
 }
-code {
-  padding: 2px 5px;
-  background-color: rgb(var(--subtle-bg));
-  border-radius: 3px;
-  font-size: 0.9em;
+
+th {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 900;
+  text-transform: uppercase;
 }
-pre {
-  padding: 1rem;
-  background-color: rgb(var(--subtle-bg));
-  border-radius: 4px;
-  overflow-x: auto;
-  border: 1px solid rgb(var(--gray-light));
-}
-pre > code {
-  all: unset;
-}
-blockquote {
-  border-left: 2px solid var(--accent);
-  padding: 0 0 0 1.25rem;
-  margin: 2rem 0;
-  font-style: italic;
-  color: rgb(var(--gray));
-  font-size: 1.125rem;
-}
-hr {
-  border: none;
-  border-top: 1px solid rgb(var(--gray-light));
-  margin: 2rem 0;
-}
+
+/* Mobile */
 @media (max-width: 720px) {
   body {
-    font-size: 15px;
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
   }
 }
 
@@ -157,12 +215,8 @@ hr {
   height: 1px;
   width: 1px;
   overflow: hidden;
-  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
   clip: rect(1px 1px 1px 1px);
-  /* maybe deprecated but we need to support legacy browsers */
   clip: rect(1px, 1px, 1px, 1px);
-  /* modern browsers, clip-path works inwards from each corner */
   clip-path: inset(50%);
-  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
   white-space: nowrap;
 }
