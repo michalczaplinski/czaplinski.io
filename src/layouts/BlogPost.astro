@@ -33,11 +33,15 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         box-shadow: var(--box-shadow);
       }
       .prose {
-        width: 800px;
-        max-width: calc(100% - 4em);
+        width: 100%;
+        max-width: 800px;
         margin: auto;
-        padding: 0 2em 4em;
+        padding: 3em 2em 4em; /* Increased top padding */
         color: var(--text-main);
+        background-color: var(--blueprint-blue-dark);
+        border: 2px solid var(--border-color);
+        box-shadow: var(--box-shadow);
+        box-sizing: border-box; /* Ensure padding doesn't cause overflow */
       }
       .title {
         margin-bottom: 3rem;
@@ -73,7 +77,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
       @media (max-width: 720px) {
         .prose {
-          padding: 0 1.5rem 3rem;
+          padding: 2em 1.5rem 3rem; /* Restored top padding */
           max-width: calc(100% - 2em);
         }
         .title h1 {

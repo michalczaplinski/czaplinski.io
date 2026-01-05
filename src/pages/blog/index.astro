@@ -17,7 +17,14 @@ const posts = (await getCollection("blog")).sort(
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
       main {
-        width: 800px;
+        width: 100%;
+        max-width: 800px;
+        background-color: var(--blueprint-blue-dark);
+        border: 2px solid var(--border-color);
+        box-shadow: var(--box-shadow);
+        padding: 2rem;
+        margin: 0 auto 4rem auto; /* Center and add spacing */
+        box-sizing: border-box; /* Ensure padding doesn't affect width */
       }
       ul {
         display: grid;
