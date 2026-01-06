@@ -1,8 +1,11 @@
 ---
+import { Image } from "astro:assets";
+
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import michal from "../images/michal.jpg";
 ---
 
 <style>
@@ -244,7 +247,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
             I build precise, scalable, and beautiful digital solutions.
           </p>
           <div class="links">
-            <a href="/blog" class="primary-link">Read my blog</a>
+            <a href="/blog" class="primary-link">blog</a>
             <a
               href="https://github.com/michalczaplinski"
               target="_blank"
@@ -261,11 +264,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
             <div class="crosshair c-br"></div>
           </div>
           <div class="circle-deco"></div>
-          <img
-            src="/assets/michal.jpg"
-            alt="Michał Czapliński"
-            class="hero-image"
-          />
+          <Image src={michal} alt="Michał Czapliński" class="hero-image" />
         </div>
       </section>
     </main>

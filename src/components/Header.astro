@@ -8,8 +8,12 @@ import { SITE_TITLE } from "../consts";
   <nav>
     <div class="header-nav">
       <div class="logo-container">
-        <Logo />
-        <h2 class="site-title"><a href="/">{SITE_TITLE}</a></h2>
+        <a href="/" class="logo-site-link">
+          <Logo />
+          <h2 class="site-title">
+            {SITE_TITLE}
+          </h2>
+        </a>
       </div>
       <button
         class="hamburger-menu"
@@ -133,6 +137,17 @@ import { SITE_TITLE } from "../consts";
     z-index: 100;
   }
 
+  .logo-site-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: center;
+
+    h2 {
+      margin-bottom: 0;
+    }
+  }
+
   /* Decorative corners for header */
   header::after {
     content: "";
@@ -181,6 +196,7 @@ import { SITE_TITLE } from "../consts";
   h2 {
     border-bottom: none; /* Remove h2 decorative underline */
     padding-bottom: 0;
+    font-size: 1.5rem;
   }
 
   .site-title a {
