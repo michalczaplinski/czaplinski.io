@@ -128,8 +128,7 @@ export default Fade;
 
 Let's break down what's going on here, starting with the first file. The interesting part is this:
 
-```javascript
-// highlight-range{11-13}
+```js {11-13}
 // index.js
 
 const App = () => {
@@ -165,8 +164,7 @@ This gives use a way to separate the _animation_ from the _mounting/unmounting_.
 
 The `show` prop controls whether we apply the `fadeIn` or `fadeOut` animation and the `shouldRender` state controls the mounting/unmounting:
 
-```js
-// highlight-range{3,5}
+```js {3,5}
 // ...
 return (
   shouldRender && (
