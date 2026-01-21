@@ -76,9 +76,14 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
       }
 
       @media (max-width: 720px) {
+        main {
+          width: 100%;
+          padding: 2em 0.5em;
+          box-sizing: border-box;
+        }
         .prose {
-          padding: 2em 1.5rem 3rem; /* Restored top padding */
-          max-width: calc(100% - 2em);
+          padding: 2em 1em 3rem;
+          max-width: 100%;
         }
         .title h1 {
           font-size: 2rem;
