@@ -62,6 +62,8 @@ import michal from "../images/michal.jpg";
     display: flex;
     gap: 1.5rem;
     margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center; /* Center links on all screens if that fits the design, or just add to media query */
   }
 
   .primary-link,
@@ -230,6 +232,17 @@ import michal from "../images/michal.jpg";
       width: 280px;
       height: 280px;
     }
+
+    .links {
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .primary-link,
+    .secondary-link {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+    }
   }
 </style>
 
@@ -248,7 +261,13 @@ import michal from "../images/michal.jpg";
         <div class="hero-content">
           <h1><span>Hi, I'm</span> Michał</h1>
           <p class="subtitle">
-            I build precise, scalable, and beautiful digital solutions.
+            I built <a href="https://motmotalk.com" target="_blank"
+              >motmotalk.com</a
+            > (AI language learning app), contribute to <b>WordPress Core</b>,
+            and <a
+              href="https://europe.wordcamp.org/2024/session/interactivity-api-the-new-standard-way-to-build-modern-wordpress-frontends/"
+              target="_blank">speak at conferences</a
+            >.
           </p>
           <div class="links">
             <a href="/blog" class="primary-link">blog</a>
@@ -256,6 +275,11 @@ import michal from "../images/michal.jpg";
               href="https://github.com/michalczaplinski"
               target="_blank"
               class="secondary-link">GitHub</a
+            >
+            <a
+              href="/michal_czaplinski_cv.pdf"
+              target="_blank"
+              class="secondary-link">CV</a
             >
           </div>
         </div>
